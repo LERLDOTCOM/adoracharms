@@ -448,7 +448,20 @@ window.addEventListener("load",()=>{
     gsap.to(".hscr",{opacity:0,ease:"none",scrollTrigger:{trigger:"#hero",start:"55% top",end:"75% top",scrub:1}});
   }
   /* Cargar Sheet después de que la página ya está pintada */
-  setTimeout(loadSheet,800);
+  /* Datos del Sheet pre-cargados — se actualizan cuando regeneras el HTML */
+const SHEET_OVERRIDES={"39":"https://res.cloudinary.com/dypdi9ejd/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05_26_at_12.52.57_a._m._wuczgz"};
+(function applySheet(){
+  Object.keys(SHEET_OVERRIDES).forEach(function(i){
+    var idx=parseInt(i);
+    var url=SHEET_OVERRIDES[i];
+    if(!url||idx>=PM.length)return;
+    sheetData[idx]={img:url};
+  });
+  var bar=document.getElementById("sheetBar");
+  var msg=document.getElementById("sheetMsg");
+  if(bar){bar.className="sheet-bar";if(msg)msg.textContent="✓ Datos del Sheet cargados";}
+  setTimeout(function(){if(bar)bar.style.display="none";},3000);
+})();
 });
 
 /* ── GOOGLE SHEET SYNC ── */
