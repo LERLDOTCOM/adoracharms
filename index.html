@@ -597,7 +597,10 @@ function parseSheetJSON(rows){
         const ci=cards[i].querySelector(".cimg");
         if(ci){
           ci.dataset.src=fixed;
-          /* cargar imagen inmediatamente si el card es visible */
+          ci.classList.remove("ok");
+          ci.src="";
+          const th=cards[i].querySelector(".cthumb");
+          if(th)th.classList.remove("gone");
           imgObs.observe(ci);
         }
       }
