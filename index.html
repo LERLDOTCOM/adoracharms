@@ -465,6 +465,19 @@ const SHEET_OVERRIDES={"39":"https://res.cloudinary.com/dypdi9ejd/image/upload/f
 });
 
 /* ── GOOGLE SHEET SYNC ── */
+/* ── CONVERT IMAGE URLS ── */
+function fixImgur(url){
+  if(!url)return url;
+  url=url.trim();
+  if(url.includes("cloudinary.com"))return url;
+  if(url.match(/i\.imgur\.com\/.+\.(jpg|jpeg|png|gif|webp)/i))return url;
+  const mAlbum=url.match(/imgur\.com\/a\/([a-zA-Z0-9]+)/);
+  if(mAlbum)return"https://i.imgur.com/"+mAlbum[1]+".jpg";
+  const mDirect=url.match(/imgur\.com\/([a-zA-Z0-9]+)$/);
+  if(mDirect)return"https://i.imgur.com/"+mDirect[1]+".jpg";
+  return url;
+}
+
 function loadSheet(){
   const bar=document.getElementById("sheetBar"),msg=document.getElementById("sheetMsg");
   const APPS_URL="https://script.google.com/macros/s/AKfycbyLEZoZmOjvhYQufSKSu501yiZ1TwSYpxCq2vfzI-lvB-3EUlUm_x8_uKEn97OY-0Jj/exec?callback=sheetCallback";
@@ -489,19 +502,6 @@ function loadSheet(){
   document.head.appendChild(s);
 }
 
-/* ── CONVERT IMAGE URLS ── */
-function fixImgur(url){
-  if(!url)return url;
-  url=url.trim();
-  if(url.includes("cloudinary.com"))return url;
-  if(url.match(/i\.imgur\.com\/.+\.(jpg|jpeg|png|gif|webp)/i))return url;
-  const mAlbum=url.match(/imgur\.com\/a\/([a-zA-Z0-9]+)/);
-  if(mAlbum)return"https://i.imgur.com/"+mAlbum[1]+".jpg";
-  const mDirect=url.match(/imgur\.com\/([a-zA-Z0-9]+)$/);
-  if(mDirect)return"https://i.imgur.com/"+mDirect[1]+".jpg";
-  return url;
-}
-
 function parseSheet(csv){
   const lines=csv.split("\n").filter(l=>l.trim());
   if(lines.length<2)return;
@@ -513,6 +513,24 @@ function parseSheet(csv){
   const iPrice=headers.findIndex(h=>h.includes("precio")||h.includes("price"));
   const iTalla=headers.findIndex(h=>h.includes("talla"));
   if(iName<0)return;
+
+  /* convertir cualquier link de imagen al formato correcto */
+  function fixImgur(url){
+    if(!url)return url;
+    url=url.trim();
+    /* Cloudinary — funciona directo, no modificar */
+    if(url.includes("cloudinary.com"))return url;
+    /* ya es imagen directa de imgur */
+    if(url.match(/i\.imgur\.com\/.+\.(jpg|jpeg|png|gif|webp)/i))return url;
+    /* album imgur.com/a/XXXXX */
+    const mAlbum=url.match(/imgur\.com\/a\/([a-zA-Z0-9]+)/);
+    if(mAlbum)return"https://i.imgur.com/"+mAlbum[1]+".jpg";
+    /* imgur.com/XXXXX sin extensión */
+    const mDirect=url.match(/imgur\.com\/([a-zA-Z0-9]+)$/);
+    if(mDirect)return"https://i.imgur.com/"+mDirect[1]+".jpg";
+    /* cualquier otra URL — devolver tal cual */
+    return url;
+  }
 
   /* match exacto por posición (fila Sheet = índice PM) */
   for(let i=1;i<lines.length;i++){
@@ -592,8 +610,9 @@ function parseSheetJSON(rows){
         const ci=cards[i].querySelector(".cimg");
         if(ci){
           ci.dataset.src=fixed;
-          /* cargar imagen inmediatamente si el card es visible */
-          imgObs.observe(ci);
+          ci.src=fixed;
+          ci.onload=function(){ci.classList.add("ok");};
+          ci.onerror=function(){ci.src="";};
         }
       }
     }
