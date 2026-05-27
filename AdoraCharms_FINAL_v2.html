@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ADORA CHARMS — Joyería Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+<style>
+:root{
+  --blush:#fdf0f3;--blush2:#f8e6ec;--blush3:#f0ccd8;
+  --rose:#d4849a;--deep:#b05a72;--mag:#c2185b;
+  --gold:#c9a050;--gold2:#e8c97a;
+  --white:#fff;--pearl:#fdf8f5;
+  --ink:#2a1a20;--ink2:#5a3a44;--ink3:#9a7a84;
+  --bd:rgba(210,130,155,.2);--bddim:rgba(210,130,155,.1);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --fs:'Cormorant Garamond',Georgia,serif;
+  --fn:'Montserrat',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--blush);color:var(--ink);font-family:var(--fn);font-weight:300;overflow-x:hidden;cursor:none}
+#cur{position:fixed;width:8px;height:8px;background:var(--deep);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .2s;will-change:left,top}
+#curR{position:fixed;width:36px;height:36px;border:1px solid rgba(176,90,114,.28);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);will-change:left,top}
+@media(hover:none){#cur,#curR{display:none}body{cursor:auto}}
+
+/* BANNER */
+.pbanner{background:linear-gradient(135deg,var(--mag),var(--deep) 60%,#8b1a4a);padding:9px 16px;text-align:center}
+.pbin{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
+.pbi{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.93);display:flex;align-items:center;gap:5px}
+.pbsep{width:1px;height:14px;background:rgba(255,255,255,.2)}
+@media(max-width:560px){.pbsep{display:none}.pbin{gap:7px;flex-direction:column}}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:200;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(253,240,243,.96);border-bottom:1px solid var(--bddim);backdrop-filter:blur(18px);transition:box-shadow .4s}
+header.up{box-shadow:0 3px 24px rgba(176,90,114,.1)}
+.lz{display:flex;align-items:center;gap:14px}
+.lring{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--bd);overflow:hidden;position:relative;flex-shrink:0}
+.lring img{width:100%;height:100%;object-fit:cover;display:block}
+.lring::after{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 50%,rgba(201,160,80,.45) 70%,transparent);animation:spin 10s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bname{font-family:var(--fs);font-size:19px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;background:linear-gradient(120deg,var(--deep),var(--mag),var(--rose),var(--deep));background-size:280%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 6s ease-in-out infinite}
+@keyframes shim{0%,100%{background-position:0%}50%{background-position:100%}}
+.bsub{font-size:7.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3);margin-top:2px}
+.hright{display:flex;align-items:center;gap:12px}
+.ebadge{background:rgba(201,160,80,.08);border:1px solid rgba(201,160,80,.24);padding:6px 12px;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold)}
+.concierge{border:1px solid var(--bddim);padding:6px 14px;text-align:right}
+.cty{font-size:7.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--deep);display:block;margin-bottom:2px}
+.cph{font-family:var(--fs);font-size:13px;color:var(--ink)}
+@media(max-width:800px){header{padding:0 16px}.ebadge{display:none}.hright{gap:8px}}
+
+/* HERO */
+.hero{position:relative;height:100svh;min-height:560px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hvw{position:absolute;inset:-18% 0;z-index:0}
+.hvw video{width:100%;height:100%;object-fit:cover;display:block}
+.hvw::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,#1e080e,#3d0f1e 30%,#160709 65%,#080306)}
+.hov{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(8,3,6,.6) 0%,rgba(8,3,6,.22) 50%,rgba(8,3,6,.68) 100%)}
+#ptc{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hcont{position:relative;z-index:4;text-align:center;padding:0 20px;display:flex;flex-direction:column;align-items:center;gap:22px;max-width:860px}
+.heye{display:flex;align-items:center;gap:16px;font-size:9px;letter-spacing:.5em;text-transform:uppercase;color:rgba(245,210,185,.8)}
+.heln{width:48px;height:1px;background:linear-gradient(90deg,transparent,rgba(245,210,185,.55))}.heln.r{background:linear-gradient(90deg,rgba(245,210,185,.55),transparent)}
+.htit{font-family:var(--fs);font-size:clamp(40px,8vw,88px);font-weight:300;font-style:italic;line-height:1.05;color:#fdf0f3;text-shadow:0 3px 48px rgba(0,0,0,.65)}
+.w{display:inline-block;overflow:hidden;margin-right:.2em;vertical-align:top}
+.wi{display:inline-block}
+.hdiv{display:flex;align-items:center;gap:16px}
+.hdln{width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,160,80,.65))}.hdln.r{background:linear-gradient(90deg,rgba(201,160,80,.65),transparent)}
+.hddia{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 12px rgba(201,160,80,.55)}
+.hcats{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+.hcat{font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:rgba(253,235,240,.6);background:none;border:none;cursor:none;font-family:var(--fn);font-weight:300;padding:3px 0;position:relative;transition:color .3s}
+.hcat::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:1px;background:var(--blush3);transition:left .4s var(--ease),right .4s var(--ease)}
+.hcat:hover{color:rgba(253,235,240,.95)}.hcat:hover::after{left:0;right:0}
+.hscr{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hsct{font-size:8px;letter-spacing:.38em;text-transform:uppercase;color:rgba(253,235,240,.4)}
+.hscl{width:1px;height:48px;background:linear-gradient(to bottom,rgba(253,235,240,.4),transparent);animation:pu 2.2s ease-in-out infinite}
+@keyframes pu{0%,100%{opacity:.35;transform:scaleY(1)}50%{opacity:.85;transform:scaleY(.6)}}
+
+/* PERKS */
+.perks{background:var(--white);border-bottom:1px solid var(--bddim);padding:11px 48px}
+.pkin{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.pk{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.1em;color:var(--ink2)}
+.pk strong{color:var(--deep);font-weight:500}
+.pksep{width:1px;height:15px;background:var(--bddim)}
+@media(max-width:640px){.perks{padding:10px 16px}.pkin{gap:10px}.pksep{display:none}}
+
+/* STATS */
+.stats{background:var(--white);border-bottom:1px solid var(--bddim);padding:10px 48px}
+.stin{max-width:1400px;margin:0 auto;display:flex;justify-content:center}
+.stat{display:flex;flex-direction:column;align-items:center;padding:0 36px;position:relative}
+.stat+.stat::before{content:'';position:absolute;left:0;top:15%;bottom:15%;width:1px;background:var(--bddim)}
+.stn{font-family:var(--fs);font-size:26px;font-weight:400;color:var(--deep);line-height:1}
+.stl{font-size:7.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink3);margin-top:4px}
+
+/* SHEET STATUS BAR */
+.sheet-bar{background:rgba(46,125,50,.06);border-bottom:1px solid rgba(46,125,50,.12);padding:8px 48px;font-size:10px;color:#2e7d32;display:flex;align-items:center;gap:8px;letter-spacing:.08em}
+.sheet-bar.loading{color:var(--ink3);background:rgba(210,130,155,.04)}
+.sheet-bar.err{color:#c62828;background:rgba(198,40,40,.04)}
+.sdot{width:8px;height:8px;border-radius:50%;background:currentColor;flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* FILTROS */
+.fnav{background:rgba(253,240,243,.97);border-bottom:1px solid var(--bddim);padding:0 48px;position:sticky;top:66px;z-index:100;backdrop-filter:blur(14px)}
+.fni{max-width:1400px;margin:0 auto;display:flex;align-items:center;height:46px;overflow-x:auto;scrollbar-width:none;gap:0}
+.fni::-webkit-scrollbar{display:none}
+.fp{display:flex;align-items:center;flex-shrink:0}
+.np{position:relative;padding:0 12px;height:46px;display:flex;align-items:center;font-size:8px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink3);background:none;border:none;cursor:none;font-family:var(--fn);white-space:nowrap;transition:color .25s}
+.np::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:1.5px;background:linear-gradient(90deg,var(--rose),var(--deep),var(--rose));transition:left .38s var(--ease),right .38s var(--ease)}
+.np:hover,.np.on{color:var(--deep)}.np:hover::after,.np.on::after{left:12px;right:12px}
+.nsep{width:1px;height:15px;background:var(--bddim);flex-shrink:0}
+.ag{display:flex;gap:5px;padding:0 12px;flex-shrink:0}
+.ab{padding:4px 11px;font-size:7.5px;letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--bddim);background:transparent;color:var(--ink3);font-family:var(--fn);cursor:none;transition:all .25s}
+.ab:hover{border-color:var(--rose);color:var(--deep)}
+.ab.on{border-color:var(--deep);color:var(--deep);background:rgba(176,90,114,.06)}
+.ab.avd.on{border-color:#388e3c;color:#2e7d32;background:rgba(46,125,50,.07)}
+.ab.ava.on{border-color:#d32f2f;color:#c62828;background:rgba(198,40,40,.06)}
+.sz{margin-left:auto;position:relative;display:flex;align-items:center;flex-shrink:0}
+.sic{position:absolute;left:10px;width:11px;height:11px;color:var(--ink3);pointer-events:none;transition:color .25s}
+.srch{width:150px;height:32px;padding:0 10px 0 30px;background:rgba(210,130,155,.05);border:1px solid var(--bddim);color:var(--ink);font-family:var(--fn);font-size:10px;outline:none;transition:width .45s var(--ease),border-color .25s,box-shadow .25s}
+.srch::placeholder{color:var(--ink3);font-size:8px;letter-spacing:.1em}
+.srch:focus{width:200px;border-color:var(--rose);box-shadow:0 0 0 2px rgba(210,130,155,.1)}
+.srch:focus~.sic{color:var(--rose)}
+.cnt{margin-left:10px;font-size:8px;letter-spacing:.15em;color:var(--ink3);white-space:nowrap}
+@media(max-width:800px){.fnav{padding:0 8px;top:58px}.np{padding:0 8px}.ag{padding:0 7px}}
+
+/* GRID */
+main{max-width:1400px;margin:0 auto;padding:24px 48px 70px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--bddim)}
+@media(max-width:800px){main{padding:14px 10px 60px}.grid{grid-template-columns:repeat(2,1fr)}}
+
+/* CARD */
+.card{background:var(--white);position:relative;overflow:hidden;cursor:none;transition:background .3s var(--ease);contain:layout style paint}
+.card:hover{background:var(--pearl)}
+.card.H{display:none}
+.card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 45%,rgba(176,90,114,.04));opacity:0;transition:opacity .3s;z-index:1;pointer-events:none}
+.card:hover::after{opacity:1}
+.cbadge{position:absolute;top:9px;right:9px;z-index:3;font-size:7px;letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;font-family:var(--fn)}
+.bd{background:rgba(46,125,50,.1);color:#2e7d32;border:1px solid rgba(46,125,50,.18)}
+.ba{background:rgba(198,40,40,.07);color:#c62828;border:1px solid rgba(198,40,40,.13)}
+
+/* IMAGEN con lazy + placeholder blur */
+.ciw{width:100%;aspect-ratio:1;overflow:hidden;background:var(--blush2);position:relative}
+.ciw::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--rose),transparent);transform:scaleX(0);transition:transform .45s var(--ease);z-index:2}
+.card:hover .ciw::before{transform:scaleX(1)}
+
+/* placeholder difuminado = el thumb 20x20 del PDF escalado */
+.cthumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(14px) brightness(.92);transform:scale(1.15);transition:opacity .5s}
+.cthumb.gone{opacity:0;pointer-events:none}
+
+/* imagen real */
+.cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s,transform .55s var(--ease)}
+.cimg.ok{opacity:1}
+.card:hover .cimg{transform:scale(1.055)}
+.card.ago .cimg{filter:grayscale(18%) brightness(.82)}
+
+.cbody{padding:12px 12px 10px;position:relative;z-index:2}
+.ccat{font-size:7px;letter-spacing:.26em;text-transform:uppercase;color:var(--rose);margin-bottom:4px}
+.cname{font-family:var(--fs);font-size:15px;font-weight:400;line-height:1.2;margin-bottom:3px;color:var(--ink);transition:color .25s}
+.card:hover .cname{color:var(--mag)}
+.cdesc{font-size:10px;color:var(--ink3);line-height:1.5;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ctalls{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:7px}
+.ct{font-size:8px;padding:2px 6px;border:1px solid var(--bddim);color:var(--ink3);font-family:var(--fn)}
+.cfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bddim);padding-top:8px}
+.cpr{font-family:var(--fs);font-size:17px;font-weight:400;color:var(--ink)}
+.cps{font-size:8px;color:var(--ink3);margin-left:2px;font-family:var(--fn)}
+.bwa{display:flex;align-items:center;gap:4px;background:transparent;border:1px solid var(--bd);color:var(--ink3);padding:4px 10px;font-family:var(--fn);font-size:7.5px;letter-spacing:.13em;text-transform:uppercase;cursor:none;text-decoration:none;position:relative;overflow:hidden;transition:color .3s,border-color .3s}
+.bwa::before{content:'';position:absolute;inset:0;background:var(--deep);transform:translateX(-101%);transition:transform .34s var(--ease);z-index:-1}
+.bwa:hover{border-color:var(--deep);color:var(--white)}.bwa:hover::before{transform:translateX(0)}
+.bwa.dis{border-color:var(--bddim);color:var(--ink3);opacity:.35;pointer-events:none}
+.wico{width:10px;height:10px;flex-shrink:0}
+
+/* VER MÁS */
+.loadmore{display:none;margin:22px auto 0;padding:10px 32px;background:transparent;border:1px solid var(--bd);color:var(--ink3);font-family:var(--fn);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;cursor:none;position:relative;overflow:hidden;transition:color .3s,border-color .3s}
+.loadmore::before{content:'';position:absolute;inset:0;background:var(--deep);transform:translateX(-101%);transition:transform .34s var(--ease);z-index:-1}
+.loadmore:hover{border-color:var(--deep);color:var(--white)}.loadmore:hover::before{transform:translateX(0)}
+.loadmore.V{display:block}
+
+/* MODAL */
+.mo{display:none;position:fixed;inset:0;background:rgba(42,20,28,.85);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(10px)}
+.mo.open{display:flex}
+.mbox{background:var(--white);border:1px solid var(--bddim);max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.miw{width:100%;aspect-ratio:1;overflow:hidden;background:var(--blush2);position:relative}
+.mimg{width:100%;height:100%;object-fit:cover;display:block}
+.mthumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(10px) brightness(.9);transform:scale(1.1);transition:opacity .4s}
+.mthumb.gone{opacity:0}
+.miw::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--rose),transparent)}
+.mbody{padding:22px}
+.mcat{font-size:7.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--rose);margin-bottom:6px}
+.mname{font-family:var(--fs);font-size:22px;font-weight:400;line-height:1.2;color:var(--ink);margin-bottom:7px}
+.mav{display:inline-block;font-size:7.5px;letter-spacing:.17em;text-transform:uppercase;padding:2px 9px;margin-bottom:11px;font-family:var(--fn)}
+.mav.d{background:rgba(46,125,50,.08);color:#2e7d32;border:1px solid rgba(46,125,50,.16)}
+.mav.a{background:rgba(198,40,40,.07);color:#c62828;border:1px solid rgba(198,40,40,.13)}
+.mest{display:flex;align-items:center;gap:7px;background:rgba(201,160,80,.07);border:1px solid rgba(201,160,80,.2);padding:8px 12px;margin-bottom:14px;font-size:9.5px;color:var(--gold)}
+.mdsc{font-size:12px;color:var(--ink2);line-height:1.72;margin-bottom:14px}
+.tsec{margin-bottom:16px}
+.tlbl{font-size:7.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink3);margin-bottom:9px;display:block}
+.tgrid{display:flex;gap:6px;flex-wrap:wrap}
+.tbtn{width:44px;height:44px;border:1px solid var(--bddim);background:transparent;font-family:var(--fn);font-size:11px;cursor:none;color:var(--ink3);transition:all .25s;display:flex;align-items:center;justify-content:center}
+.tbtn:hover{border-color:var(--rose);color:var(--deep)}.tbtn.on{background:var(--deep);border-color:var(--deep);color:var(--white)}
+.thnt{font-size:9.5px;color:var(--rose);margin-top:7px;display:none}.thnt.V{display:block}
+.mpr{font-family:var(--fs);font-size:24px;font-weight:400;color:var(--ink);margin-bottom:13px}
+.bwam{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1px solid var(--deep);background:transparent;color:var(--deep);padding:13px;font-family:var(--fn);font-size:9px;letter-spacing:.17em;text-transform:uppercase;cursor:none;text-decoration:none;position:relative;overflow:hidden;transition:color .34s var(--ease)}
+.bwam::before{content:'';position:absolute;inset:0;background:var(--deep);transform:translateY(101%);transition:transform .34s var(--ease)}
+.bwam:hover{color:var(--white)}.bwam:hover::before{transform:translateY(0)}
+.bwam>*{position:relative;z-index:1}
+.bwam.dis{border-color:var(--bddim);color:var(--ink3);pointer-events:none}.bwam.dis::before{display:none}
+.mcl{position:absolute;top:11px;right:11px;width:28px;height:28px;background:transparent;border:1px solid var(--bddim);color:var(--ink3);cursor:none;font-size:15px;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .25s}
+.mcl:hover{border-color:var(--rose);color:var(--deep)}
+
+/* PROMO FLOTANTE */
+.pf{position:fixed;bottom:20px;right:20px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.pp{background:var(--white);border:1px solid var(--bd);border-top:3px solid var(--mag);padding:16px;width:264px;display:none;box-shadow:0 14px 44px rgba(176,90,114,.14)}
+.pp.V{display:block}
+.pp h3{font-family:var(--fs);font-size:14px;color:var(--mag);margin-bottom:11px;font-weight:500}
+.ppic{display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--bddim)}
+.ppic:last-of-type{border:none;padding-bottom:0}
+.ppico{font-size:17px;flex-shrink:0}
+.pptx{font-size:10.5px;color:var(--ink2);line-height:1.5}
+.pptx strong{color:var(--deep);display:block;font-size:10px;margin-bottom:1px}
+.ppcl{background:linear-gradient(135deg,var(--mag),var(--deep));color:var(--white);border:none;padding:8px 16px;font-family:var(--fn);font-size:8px;letter-spacing:.15em;text-transform:uppercase;cursor:none;width:100%;margin-top:11px;transition:opacity .25s}
+.ppcl:hover{opacity:.88}
+.ptrig{background:linear-gradient(135deg,var(--mag),var(--deep));color:var(--white);border:none;padding:9px 16px;font-family:var(--fn);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;cursor:none;display:flex;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(194,24,91,.26);transition:box-shadow .25s,transform .2s}
+.ptrig:hover{box-shadow:0 6px 22px rgba(194,24,91,.36);transform:translateY(-1px)}
+
+.empty{text-align:center;padding:60px 20px;display:none}.empty.V{display:block}
+.etit{font-family:var(--fs);font-size:22px;font-style:italic;margin-bottom:5px;color:var(--ink)}
+.esub{font-size:11px;color:var(--ink3);letter-spacing:.08em;margin-top:4px}
+footer{background:linear-gradient(135deg,var(--ink),#3a1a24);text-align:center;padding:28px;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(253,240,243,.4)}
+.flog{font-family:var(--fs);font-size:19px;font-style:italic;color:var(--blush3);margin-bottom:5px;letter-spacing:.13em;display:block}
+.fr{color:var(--rose)}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="curR"></div>
+
+<div class="pbanner">
+  <div class="pbin">
+    <div class="pbi">🚚 Envío gratis desde <strong>&nbsp;$2,500 MXN</strong></div>
+    <div class="pbsep"></div>
+    <div class="pbi">💳 <strong>3 MSI</strong>&nbsp; en compras &gt; $2,500 con TDC</div>
+    <div class="pbsep"></div>
+    <div class="pbi">🎁 Estuche y bolsa <strong>&nbsp;ADORA CHARMS</strong> incluidos</div>
+  </div>
+</div>
+
+<header id="hdr">
+  <div class="lz">
+    <div class="lring"><img src="data:image/png;base64,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" alt="ADORA CHARMS" width="44" height="44"></div>
+    <div><div class="bname">ADORA CHARMS</div><div class="bsub">Joyería Premium · Pandora Style</div></div>
+  </div>
+  <div class="hright">
+    <div class="ebadge">🎀 Estuche &amp; bolsa incluidos</div>
+    <div class="concierge">
+      <span class="cty">Xalapa, Veracruz</span>
+      <span class="cph">228 845 2365</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hvw" id="hvw">
+    <video id="bgv" muted loop playsinline preload="none">
+      <source data-src="https://cdn.coverr.co/videos/coverr-close-up-of-a-womans-hands-with-rings-and-bracelets-3080/1080p.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hov"></div>
+  <canvas id="ptc"></canvas>
+  <div class="hcont">
+    <div class="heye"><div class="heln"></div><span>Colección 2025 — 2026</span><div class="heln r"></div></div>
+    <h1 class="htit">
+      <span class="w"><span class="wi">Cuenta</span></span>
+      <span class="w"><span class="wi">tu</span></span>
+      <span class="w"><span class="wi">historia</span></span><br>
+      <span class="w"><em><span class="wi">charm</span></em></span>
+      <span class="w"><em><span class="wi">a</span></em></span>
+      <span class="w"><em><span class="wi">charm</span></em></span>
+    </h1>
+    <div class="hdiv"><div class="hdln"></div><div class="hddia"></div><div class="hdln r"></div></div>
+    <div class="hcats">
+      <button class="hcat" onclick="FC('CHARMS')">Charms</button>
+      <button class="hcat" onclick="FC('BRAZALETES')">Brazaletes</button>
+      <button class="hcat" onclick="FC('COLLARES')">Collares</button>
+      <button class="hcat" onclick="FC('ARETES')">Aretes</button>
+      <button class="hcat" onclick="FC('ANILLOS')">Anillos</button>
+      <button class="hcat" onclick="FC('MURANOS')">Muranos</button>
+    </div>
+  </div>
+  <div class="hscr"><div class="hscl"></div><span class="hsct">Explorar</span></div>
+</section>
+
+<div class="perks">
+  <div class="pkin">
+    <div class="pk">📦 Estuche <strong>ADORA CHARMS</strong> incluido</div>
+    <div class="pksep"></div>
+    <div class="pk">🎀 Bolsa de regalo incluida</div>
+    <div class="pksep"></div>
+    <div class="pk">🚚 Envío gratis <strong>desde $2,500</strong></div>
+    <div class="pksep"></div>
+    <div class="pk">💳 <strong>3 MSI</strong> en compras &gt; $2,500</div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stin">
+    <div class="stat"><span class="stn">481</span><span class="stl">Piezas Totales</span></div>
+    <div class="stat"><span class="stn" id="stD" style="color:#2e7d32">235</span><span class="stl">Disponibles</span></div>
+    <div class="stat"><span class="stn">7</span><span class="stl">Categorías</span></div>
+    <div class="stat"><span class="stn" style="font-family:var(--fn);font-size:14px">$499</span><span class="stl">Desde</span></div>
+  </div>
+</div>
+
+<div class="sheet-bar loading" id="sheetBar">
+  <span class="sdot"></span>
+  <span id="sheetMsg">Sincronizando con Google Sheet...</span>
+</div>
+
+<nav class="fnav">
+  <div class="fni">
+    <div class="fp" id="catP">
+      <button class="np on" data-c="ALL">Todos</button>
+      <button class="np" data-c="CHARMS">Charms</button>
+      <button class="np" data-c="BRAZALETES">Brazaletes</button>
+      <button class="np" data-c="COLLARES">Collares</button>
+      <button class="np" data-c="ARETES">Aretes</button>
+      <button class="np" data-c="ANILLOS">Anillos</button>
+      <button class="np" data-c="MURANOS">Muranos</button>
+      <button class="np" data-c="CADENAS">Cadenas</button>
+      <button class="np" data-c="CLIPS">Clips</button>
+    </div>
+    <div class="nsep"></div>
+    <div class="ag" id="avP">
+      <button class="ab on" data-v="ALL">Todos</button>
+      <button class="ab avd" data-v="DISPONIBLE">Disponible</button>
+      <button class="ab ava" data-v="AGOTADO">Agotado</button>
+    </div>
+    <div class="sz">
+      <input class="srch" id="srch" type="text" placeholder="Buscar...">
+      <svg class="sic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </div>
+    <span class="cnt" id="cnt"></span>
+  </div>
+</nav>
+
+<main>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty"><div class="etit">Sin resultados</div><p class="esub">Prueba con otro filtro</p></div>
+  <button class="loadmore" id="lm" onclick="LM()">Ver más productos</button>
+</main>
+
+<div class="mo" id="mo">
+  <div class="mbox">
+    <button class="mcl" id="mc">×</button>
+    <div class="miw">
+      <img class="mthumb" id="mth" src="" alt="">
+      <img class="mimg" id="mi" src="" alt="">
+    </div>
+    <div class="mbody">
+      <div class="mcat" id="mcat"></div>
+      <h2 class="mname" id="mn"></h2>
+      <div class="mav" id="mav"></div>
+      <div class="mest">🎁 &nbsp;Estuche oficial y bolsa ADORA CHARMS incluidos</div>
+      <p class="mdsc" id="md"></p>
+      <div class="tsec" id="tsec" style="display:none">
+        <span class="tlbl">Selecciona tu talla</span>
+        <div class="tgrid" id="tg"></div>
+        <p class="thnt" id="th">Selecciona una talla para continuar</p>
+      </div>
+      <div class="mpr" id="mp"></div>
+      <a class="bwam" id="mwa" href="#" target="_blank">
+        <svg style="width:13px;height:13px" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span id="mwt">Pedir por WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="pf">
+  <div class="pp" id="pp">
+    <h3>🌸 Promociones</h3>
+    <div class="ppic"><span class="ppico">🚚</span><div class="pptx"><strong>Envío gratis a todo México</strong>En compras desde $2,500 MXN</div></div>
+    <div class="ppic"><span class="ppico">💳</span><div class="pptx"><strong>3 Meses Sin Intereses</strong>En compras mayores a $2,500 con TDC</div></div>
+    <div class="ppic"><span class="ppico">🎁</span><div class="pptx"><strong>Estuche y bolsa ADORA CHARMS</strong>Incluidos en todos los artículos sin costo extra</div></div>
+    <button class="ppcl" onclick="document.getElementById('pp').classList.remove('V')">Cerrar</button>
+  </div>
+  <button class="ptrig" onclick="document.getElementById('pp').classList.toggle('V')">🌸 &nbsp;Promociones</button>
+</div>
+
+<footer>
+  <span class="flog">ADORA CHARMS</span>
+  <p>Joyería Premium · Pandora Style <span class="fr">✦</span> Xalapa, Veracruz <span class="fr">✦</span> 228 845 2365</p>
+</footer>
+
+<script>
+const WA="522288452365";
+const SHEET_CSV="https://docs.google.com/spreadsheets/d/e/2PACX-1vR91YJPLqAv1P2TJz_i1AvvXSCAAIV1Xo5xvMGgARGi87OeTrwtwJnNqcE5bYlLB2m63CJxCWLPeJuK/pub?gid=1247694806&single=true&output=csv";
+
+/* ── DATOS DEL PDF como respaldo ── */
+const PM=[{"n":"Luciérnaga que Brilla en la Oscuridad","d":"Charm luminiscente, brilla en la oscuridad. Looks nocturnos únicos.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Flor de Cerezo","d":"Delicado charm floral. Para amantes de la naturaleza y el estilo japonés.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Triple Cámara, Corazón y Brújula","d":"Charm triple para aventureras y amantes de los viajes.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Torre Eiffel","d":"Icónico charm de París. Para quienes aman los viajes románticos.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Torre Eiffel Con Corazón Dorado","d":"Torre Eiffel con corazón dorado. Versión romántica del clásico parisino.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Caballito de mar Tropical","d":"Caballito marino tropical. Ideal para amantes del mar.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Tortuga Moments Rosa","d":"Adorable tortuga rosa colección Moments.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Triple Perla, Concha y Estrella","d":"Charm marino triple. Perfecto para looks playeros.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Concha Marina Y Perla","d":"Elegante concha marina con perla. Sofisticado y atemporal.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Gus Gus Ratón Cenicienta Disney","d":"El adorable Gus Gus de Cenicienta. Para fans de Disney.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Carruaje De Cenicienta Disney Dos Tonos","d":"Carruaje mágico en dos tonos. Para fans de la princesa.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazón Rose Gold Zirconias","d":"Corazón rose gold con zirconias brillantes. Elegante y romántico.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Caracola Encantada La Sirenita Disney","d":"Caracola dorada de La Sirenita. Para fans de Ariel.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Flounder La Sirenita","d":"El simpático Flounder. Colorido y lleno de personalidad.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Carruaje Pandora","d":"Clásico carruaje Pandora. Elegante y atemporal.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Dije con Zirconia Pandora","d":"Dije circular con zirconia central. Sofisticado y versátil.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm de Hoja Canada","d":"Hoja de maple con esmalte rojo. Única y representativa.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Ojo Turco","d":"Ojo turco protector. Amuleto de protección y buena suerte.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Niña Robot","d":"Tierna niña robot en plata. Para amantes del estilo futurista.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Tortuga de Mar en Zirconias","d":"Tortuga marina cubierta de zirconias. Deslumbrante y especial.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Palomitas de Maíz Pandora","d":"Cubo de palomitas Pandora en rosa. Divertido y original.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Corona","d":"Elegante corona colgante. Para las verdaderas princesas.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm My Princess Corona","d":"Corona 'My Princess' colgante. Delicado y romántico.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Ojo Turco Colgante","d":"Versión colgante del ojo turco protector.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Vestido Cenicienta Colgante","d":"El vestido azul de Cenicienta. Para fans de Disney.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Vestido De Blanca Nieves","d":"El vestido de Blanca Nieves. Encantador y mágico.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Vestido De Anna Frozen","d":"El colorido vestido de Anna. Para fans de Frozen.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Vestido de Jazmín","d":"El vestido turquesa de la Princesa Jazmín.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Vestido de Ariel","d":"El brillante vestido verde de Ariel.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Vestido de Elsa Frozen","d":"El elegante vestido de Elsa de Frozen.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Vestido De Bella (La bella y la Bestia)","d":"El vestido amarillo de Bella. Clásico y atemporal.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Vestido De Aurora","d":"El delicado vestido de la Bella Durmiente.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Vestido De Rapunzel","d":"El vestido morado de Rapunzel. Mágico y colorido.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Cruz Brillante","d":"Cruz con zirconias brillantes. Elegante y espiritual.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Virgen De Guadalupe","d":"La Virgen de Guadalupe en plata. Símbolo de fe y devoción.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Auriculares Pandora Rosas","d":"Auriculares rosados Pandora. Para las amantes de la música.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Amor Multicolor","d":"Charm 'LOVE' multicolor con corazón. Colorido y expresivo.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Dazzling Daisy Charm","d":"Margarita brillante de zirconias. Elegante y atemporal.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Flor de primavera Primula Morado","d":"Primula morada con zirconias. Fresca y primaveral.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Lilo & Stitch Murano","d":"Lilo y Stitch en cristal Murano. Para fans de Disney.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Lock of Love","d":"Candado con llave del amor. Símbolo de amor eterno.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Rosa Brillante Floreciendo","d":"Rosa en plena floración cubierta de brillos.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Dije Sombrero Seleccionador Harry Potter","d":"El sombrero de Hogwarts. Para fans de Harry Potter.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Harry Potter Pandora Logo","d":"Logo de Harry Potter con piedra amarilla.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazón Atrapasueños","d":"Corazón con plumas atrapasueños. Místico y especial.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazón Atrapasueños Gold & Plata","d":"Atrapasueños bicolor oro y plata.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Vela de Cumpleaños","d":"Vela 'Make a Wish'. Ideal para fechas especiales.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Racimo Herbario Reluciente","d":"Ramito de flores silvestres brillantes. Natural y delicado.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corazón Plata Zirconias","d":"Corazón de plata con zirconias relucientes. Elegante.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Triple Celestial","d":"Sol, luna y estrella triple. Celestial y misterioso.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Doble Corazón Brillante 'There is no One like you'","d":"Para quien no tiene igual. Perfecto para regalar.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Globo Giratorio","d":"Globo terráqueo giratorio. Para amantes de los viajes.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Huellita y Corazón Resplandecientes","d":"Huella de mascota Fur Mom. Para amantes de mascotas.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cachorro De Labrador","d":"Adorable cachorro de Labrador en plata.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazón Abierto con Cuentas","d":"Corazón calado con cuentas decorativas.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Árbol Genealógico Corazón Rosa","d":"Árbol de la vida con corazón rosa.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Globo Aerostático Rosa (Oro Rosa)","d":"Globo aerostático rosa en oro rosa. Soñador.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Globo Aerostático Rosa (Tipo Oro)","d":"Globo aerostático con recubrimiento tipo oro.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Sulley de Monster Inc Disney Pixar","d":"El adorable Sulley de Monsters Inc.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Pez Escamas Azules","d":"Pez colgante con escamas azules.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corazón con Infinito Resplandeciente","d":"Corazón Family Forever con infinito.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Yin y Yang (Oro Rosa)","d":"Yin yang divisible rose gold. Equilibrio.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Corazón Mom","d":"Corazón MOM. El regalo perfecto para mamá.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Tontín Blanca Nieves","d":"El adorable Tontín de Blanca Nieves.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazones Madre e Hija","d":"Set de corazones madre e hija separables.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Maleta Pandora","d":"Mini maleta de viaje Pandora en plata.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Mariposa de Cristal Murano Azul","d":"Mariposa en cristal Murano azul brillante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Margarita Rosa","d":"Margarita rosa en oro rosa brillante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Día de la Suerte","d":"Charm de la suerte con trébol.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Globo Aerostático Azul Oscuro","d":"Globo aerostático azul oscuro para viajeras.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Espejito Espejito Blanca Nieves","d":"El espejo mágico de Blanca Nieves.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Huella de Mascota","d":"Huella con brillantes colgante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Beso De Mickey Mouse Y Minnie Mouse","d":"Mickey y Minnie dándose un beso. El más romántico.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cangrejo Sebastián La Sirenita","d":"El famoso Sebastián en naranja vibrante.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Pulpo Tierno Cristal Murano","d":"Pulpo adorable en cristal Murano azul.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante De Winnie the Pooh","d":"Winnie the Pooh con flores. Tierno y nostálgico.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cangrejo Ermitaño que Brilla","d":"Cangrejo ermitaño luminiscente.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Remy de Ratatouille","d":"El chef Remy de Ratatouille.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Biberón Y Zapatos De Bebé","d":"Biberón y zapatitos de bebé. Ideal para celebrar.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Pareja de Esposos","d":"Pareja de esposos. Para bodas y aniversarios.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Wall-E y Eve Brilla en la Oscuridad","d":"Wall-E y Eve luminiscentes. Para fans de Pixar.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Sra. Potts Y Chip La Bella y La Bestia","d":"La señora Potts y Chip. Encantador y mágico.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Wall-E de Disney Pixar","d":"Wall-E el robot más tierno de Pixar.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante de Familia Triple Infinito","d":"Familia en símbolo infinito triple.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Sol y Luna Separable (Recubrimiento Oro)","d":"Sol y luna separables en oro. Celestial.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Globo Aerostático Feliz Cumpleaños","d":"Globo 'Happy Birthday'. Para cumpleaños.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Corona Real","d":"Corona real con zirconias. Para la reina que llevas.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Piglet de Winnie the Pooh","d":"Piglet de Winnie the Pooh en rosa.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Bolsa De Compras Pandora","d":"Bolsa Pandora 'I love Shopping'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Vaso Pandora","d":"Vaso Pandora diseño especial. Coleccionable.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Avión, Globo Y Maleta","d":"Set de viaje completo. Para trotamundos.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Manzana Reina Malvada Disney","d":"La manzana envenenada. Para fans de villanos.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Triple Trébol, Corazón y Herradura","d":"Triple amuleto de la buena suerte.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corazones de Amistad Rompecabezas","d":"Corazones de amistad separables.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Estrella Llamativa","d":"Estrella de zirconias azules. Brillante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Oso Teddy Bebé Con Chupón","d":"Osito bebé con chupón. Adorable.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Tarta de Cumpleaños","d":"Tarta Happy Birthday colgante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Amigas Para Siempre","d":"Charm infinito 'Amigas Para Siempre'.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cadena de Eslabones con Candado","d":"Cadena con candado 'True Love'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"PANDORA Rose Corazón Moldeado","d":"Corazón moldeado en rose gold. Clásico.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Estatua de la Libertad","d":"La Estatua de la Libertad en plata.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Símbolos De New York City","d":"Símbolos icónicos de Nueva York.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Triple Pescado, Tortuga y Concha","d":"Triple marino. Para amantes del océano.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Mano de Fátima","d":"Mano de Fátima protectora. Amuleto.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Doble Amistad Opalescente","d":"Corazón opalescente divisible para amigas.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Camaleón que Cambia de Color","d":"Camaleón interactivo. Único y fascinante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Estetoscopio en Forma de Corazón","d":"Estetoscopio corazón. Para médicas y enfermeras.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Tortuga Marina Cristal Azul","d":"Tortuga marina en cristal azul.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Divisible Sol Y Luna","d":"Sol y luna divisibles en dorado.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Delfines de Cristal Murano Azul","d":"Delfines Murano azul con corazón.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Caballito de Mar Gold","d":"Caballito de mar dorado tropical.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Flor de Margaritas Azules","d":"Margarita en esmalte azul y blanco.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Margarita Rosa","d":"Margarita rosa en dorado. Femenina.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Margarita Morada","d":"Margarita morada con zirconia. Única.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm de Ficha Gold","d":"Ficha de casino dorada. Para amantes de la suerte.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Lumiere La Bella y la Bestia","d":"Lumière el candelabro mágico.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm de Dumbo De Disney","d":"Dumbo con orejas rosadas. Tierno.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Mi Rayo de Luz Gold","d":"Rayo de luz con corazón en dorado.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Cabeza de Ironman","d":"Casco de Iron Man. Para fans de Marvel.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Casco de Thor","d":"Casco de Thor. Para fans de Marvel.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Flor Azul","d":"Flor azul colgante. Delicada y primaveral.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Angel Lilo y Stitch","d":"Angel la personaje rosa de Lilo y Stitch.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Stitch Azúl de Disney","d":"Stitch azul en versión grande y colorida.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Stitch","d":"Stitch en plata con detalles de color.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Familia Lilo y Stitch","d":"Lilo y Stitch en escena familiar.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Doble Colibrí","d":"Doble colibrí en plata. Delicado.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Marvel Spider-Man Miles Morales","d":"Spider-Man Miles Morales colgante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Colgante Viaje","d":"Charm de viaje con mapa del mundo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Luz, Cámara Acción!! Hollywood","d":"Claqueta de cine Hollywood.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Olaf de Frozen de Disney","d":"El adorable Olaf de Frozen.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Donald charm","d":"El pato Donald en plata. Clásico Disney.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Silueta De Minnie Mouse Color Rojo","d":"Silueta de Minnie en rojo. Icónico.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Pluto charm","d":"Pluto en colores verde y amarillo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Pascal de Enredados que Cambia de Color","d":"Pascal el camaleón de Enredados.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Oswlad el Conejo Afortunado","d":"Oswald vintage de Disney. Coleccionable.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Gato de Cheshire Alicia Maravillas","d":"El Gato de Cheshire rosa y morado.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Family charm","d":"Charm 'Family' en letras cursivas.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Amor Infinito Colgante","d":"Corazón con símbolo infinito 'Love You'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Moño","d":"Moño de cristal rosa en forma de corazón.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Luna Destellos","d":"Luna con destellos y estrellas. Celestial.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Doble Charm Luna 'I would give you the moon'","d":"Doble luna con mensaje romántico.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Osito de Peluche","d":"Osito de peluche colgante. Tierno.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Doble Estrella Fugaz","d":"Doble estrella en plata y oro. Celestial.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Colgante Giratorio Luna Brillante","d":"Luna giratoria 'Los sueños se hacen realidad'.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Dona Pandora","d":"Donut Pandora rosa 'Love at first bite'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Divisible Trébol 4 Hojas","d":"Trébol divisible. Doble amuleto de suerte.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Trébol De La Suerte Cuatro Hojas Verde","d":"Trébol verde 'Anything is Possible'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corazón Nivelado Rojo Brillante","d":"Corazón con zirconia roja. Pasional.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Amo Mi Familia","d":"Corazón 'Family' con detalle dorado.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazón Te Quiero Hija","d":"Corazón 'Daughter' con detalle dorado.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazón Te Quiero Mejor Amiga","d":"Corazón 'Best Friend'. Para tu mejor amiga.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Mascota Perro y Hueso","d":"Perrito con hueso. Para amantes de los perros.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Gato Mascota y Moño","d":"Gatito con moño. Para amantes de los gatos.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Oso Winnie the Pooh de Disney","d":"Winnie the Pooh dorado y rojo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Pulpo Bebé De Cristal Murano","d":"Pulpo bebé Murano azul. Marina y adorable.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Alegría de Inside Out que Brilla","d":"Alegría de Inside Out luminiscente.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Ígor de Winnie de Disney","d":"Igor el burrito de Winnie the Pooh.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Fresa","d":"Fresa en esmalte rojo brillante. Fresca.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Cerezas","d":"Cerezas colgantes en esmalte rojo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Flor Pensamiento Rosa","d":"Flor pensamiento rosa y morado.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Flor Pensamiento Azul","d":"Flor pensamiento en azul y blanco.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Candado Llave de Corazón","d":"Candado con corazón y llave. Amor eterno.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corazón Amor de Mamá Radiante","d":"Corazón fucsia 'Mamá'. Día de las Madres.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazón Mamá Minnie Mouse","d":"Corazón Mom con Minnie. Para mamás Disney.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corazón Gracias Mamá","d":"Corazón Mom 'Thanks'. Para agradecer a mamá.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Mamá y Lazo de Minnie Mouse","d":"Letras MOM con lazo de Minnie.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Oruga Tierna Enroscada","d":"Oruga rosa enroscada. Tierna y original.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Pandora Coche Eléctrico","d":"Coche eléctrico Pandora en plata.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Baby Grogu y Cuna Star Wars","d":"Baby Yoda en su cuna. Para fans de Star Wars.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Princesa Jasmin","d":"La Princesa Jazmín en versión chibi.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Princesa Ariel La Sirenita","d":"Ariel la sirenita en versión chibi.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Princesa Rapunzel","d":"Rapunzel chibi con su largo cabello.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Princesa Cenicienta","d":"Cenicienta chibi en vestido azul.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Princesa Tiana","d":"La Princesa Tiana chibi. La princesa y el sapo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Dumbo De Disney (chibi)","d":"Dumbo chibi con sombrero amarillo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Pantalones Rojos de Mickey Mouse","d":"Mickey con sus icónicos pantalones rojos.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Minnie Mouse con Vestido de Lunares","d":"Minnie con vestido de lunares y lazo.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Gato de Cheshire Alicia (chibi)","d":"El Gato de Cheshire chibi.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Marie de Los Aristogatos","d":"La elegante Marie de Los Aristogatos.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Pluto de Disney (chibi)","d":"Pluto chibi. El fiel perro de Mickey.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Disney 101 Dálmatas","d":"Dálmata de 101 Dálmatas en plata.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Calado Margarita Morada","d":"Margarita calada en morado. Elegante.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Bruno Unicornio","d":"Bruno el unicornio en colores vivos.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Corazón Grabable","d":"Corazón liso grabable. Personalizable.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Carl y Ellie De UP de Disney","d":"Carl y Ellie de UP. El más emotivo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Casa y Globos de Up de Disney","d":"La casa voladora de UP con globos.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm de Plata Mochila Mujer","d":"Mochila Pandora en plata.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Medusa que Cambia de Color","d":"Medusa marina que cambia de color.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazón de Pandora Zirconias","d":"Corazón Pandora calado con zirconias.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Búho Reluciente","d":"Búho con ojos de zirconia azul.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Remy de Ratatouille x Disney","d":"Remy el chef ratón de Ratatouille.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Mano de Fátima Recubrimiento Gold","d":"Mano de Fátima dorada con ojo turco.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Paleta de Artista","d":"Paleta de pintura con colores. Para artistas.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Pesas Love GYM","d":"Pesas con corazón. Para fitness lovers.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Gatito Y Bola De Estambre","d":"Gatito jugando con estambre. Tierno.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Mundo Corazón Giratorio","d":"Globo terráqueo giratorio con corazón.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Rocket Raccoon Guardianes de la Galaxia","d":"Rocket Raccoon de Marvel.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Colgante Avioneta","d":"Pequeña avioneta colgante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Luna y Estrellas Doble Charm","d":"Luna con estrellas 'You are my universe'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Combi Vintage","d":"Combi volkswagen vintage con 'Love'.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Generaciones De Familia Dos Tonos","d":"Árbol familiar 'Family' en dos tonos.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Niño Pequeño","d":"Niño pequeño con gorro. Para mamás de niños.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Niña Pequeña","d":"Niña pequeña con coletas y flor.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Elefante Filigrama","d":"Elefante en filigrana. Símbolo de suerte.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Pandora Delfín","d":"Delfín saltarín en plata con esmalte azul.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Abanico","d":"Abanico con flores y colibríes coloridos.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Panda","d":"Panda de zirconias brillantes. Adorable.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cuarzo Amuleto Rosa","d":"Cuarzo rosa como amuleto colgante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Simba de Disney El Rey León","d":"Simba bebé de El Rey León.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Buzz Lightyear","d":"Buzz Lightyear de Toy Story.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Alien Toy Story x Disney","d":"Alien verde de Toy Story.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Cereza Pandora","d":"Cerezas Pandora colgantes.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Orejas de Minnie en Disney","d":"Orejas de Minnie Mouse Disney.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Estrella Asimétrica con Zirconias","d":"Estrella asimétrica cubierta de zirconias.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corazón con Mensaje de Agradecimiento","d":"Corazón 'I couldn't say I DO without you'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Chip and Dale x Disney","d":"Chip y Dale. Los traviesos ardillitas.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Colgante Reina y Corona Real Plata","d":"Corona 'QUEEN' con rose gold.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Hoja Morado Y Verde","d":"Hoja bicolor morado y verde iridiscente.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Manzana Reina Malvada Villanos Disney","d":"Manzana envenenada de la Reina Malvada.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cuento Blanca Nieves y los 7 Enanos","d":"Libro de cuentos de Blanca Nieves.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Martillo De Thor Marvel Avengers","d":"El mítico Mjolnir de Thor 'WORTHY'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Escudo del Capitán América","d":"Escudo del Capitán América colgante.","c":"CHARMS","a":"AGOTADO","p":490,"t":"","th":""},{"n":"Spiderman Marvel Pandora Rojo","d":"Spider-Man colgante en rojo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Marvel Ironman","d":"Iron Man en medallón circular.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Guante Del Infinito Avengers","d":"El Guante del Infinito dorado.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Iron Man Avengers Marvel Recubrimiento","d":"Iron Man figura completa recubierta.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Pantera Negra Marvel Pandora","d":"Pantera Negra en plata. Wakanda.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Pingüino","d":"Pingüino elegante en plata.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Colgante Candado y Llave","d":"Candado con llave 'Love'. Amor eterno.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Personaje Disney x Monster Inc","d":"Mike y Sullivan de Monsters Inc.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Demogorgon Stranger Things","d":"Demogorgon móvil de Stranger Things.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Upside Down Stranger Things (Brilla)","d":"El Mundo del Revés luminiscente.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"'Corre' Stranger Things (Brilla)","d":"Letras RUN luminiscentes de Stranger Things.","c":"CHARMS","a":"AGOTADO","p":550,"t":"","th":""},{"n":"Charm Daisy de Disney Plata Esterlina","d":"Daisy Duck colgante en plata esterlina.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Ángel de Amor Plata Esterlina","d":"Ángel de amor en plata esterlina.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Carruaje Cenicienta Bañado Oro Rosa","d":"Carruaje de Cenicienta en oro rosa.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Tarta de Cumpleaños Alicia Maravillas","d":"Alicia con tarta de cumpleaños.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Tigger de Winnie the Pooh","d":"Tigger el tigre saltarín de Pooh.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Ursula de la Sirenita","d":"Úrsula con perla negra. Para fans de villanos.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Colgante Flor de la Bella y la Bestia","d":"La rosa encantada en su campana.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Doble Reina de Corazones Villanos Disney","d":"La Reina de Corazones de Alicia.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Mariposa que se Divide","d":"Mariposa divisible en azul. Para compartir.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Maléfica Villanos de Disney","d":"Maléfica de La Bella Durmiente.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Corazón Negro","d":"Corazón negro liso. Elegante y misterioso.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Doble Amor de Familia","d":"Colgante 'But All the Family'.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Colgante Arcoiris Colorido","d":"Arcoíris colorido colgante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Corazón Lleno de Amor","d":"Corazón calado con anillos rose gold.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Dije Plata Zirconias Corazón Rosa","d":"Dije con corazón rosa de zirconia.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Amuleto de la Suerte Chino","d":"Amuleto chino con llaves. Buena suerte.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Reliquias de la Muerte Harry Potter","d":"Triángulo de las Reliquias de la Muerte.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Atrapasueños Espiritual","d":"Atrapasueños con flor y plumas.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"'AD ASTRA PER ASPERA' Medallón","d":"A través de las dificultades hacia las estrellas.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"'AMOR FATI' Medallón XL","d":"Amor al Destino. Lo que está destinado, será.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"'AMOR VINCIT OMNIA' Medallón","d":"El Amor lo Conquista Todo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"'MEMENTO VIVERE' Medallón","d":"Acuérdate de Vivir. Vive el presente.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"'VITA VERITAS VIRTUS' Medallón","d":"Vida, Honestidad, Coraje en dorado.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"'VIVAT FLOREAT' Medallón","d":"Que Viva, Crezca, Florezca. Sigue creciendo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Cubo de Juguete Móvil","d":"Cubo de letras móvil tipo juguete.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Pandora Insignia Corazón","d":"Medallón Pandora con corazón central.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Snitch Dorada Harry Potter","d":"La Snitch de Quidditch. Para fans de HP.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Harry Potter","d":"Harry Potter chibi de Gryffindor.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Trébol y Catarina","d":"Trébol con catarina. Triple amuleto de suerte.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Abuelita","d":"Abuelita en plata con gafas y bolso.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Abuelito","d":"Abuelito en plata con gafas y gorra.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Osito Pandora","d":"Osito Pandora con lazo rosa. Coleccionable.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Elefante y Globo Rosa","d":"Elefante con globo rosa. Soñador.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Osito y Globo","d":"Osito con globo blanco. Tierno.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Flor Reluciente","d":"Flor con zirconias brillantes. Elegante.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Daisy la Coneja","d":"Daisy la coneja de Disney.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm La Dama y el Vagabundo","d":"Scamp de La Dama y el Vagabundo.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Bebe Yoda","d":"Baby Yoda / Grogu de Star Wars.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Divisible Corazón con Llave","d":"Corazón 'Love' con llave divisible.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Colgante Harry Potter (varita)","d":"Varita con detalles dorados de Harry Potter.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Dumbo y Madre","d":"Dumbo con su mamá. El más tierno de Disney.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Cruella De Vil","d":"Cruella de Vil. Para fans de los villanos.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Orejas de Minnie Mouse (colgante)","d":"Orejas de Minnie con detalle dorado.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"La Bella y la Bestia en el Baile","d":"Bella y la Bestia bailando bajo la luna.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Mickey Mouse","d":"Mickey Mouse en plata. El clásico de Disney.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Minnie Mouse","d":"Minnie Mouse en plata. La dama de Disney.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Castillo de Disney","d":"El castillo mágico de Disney colgante.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Sebastian La Sirenita (colgante)","d":"Sebastián de La Sirenita colgante.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Copo de Nieve y Reina Elsa de Frozen","d":"Elsa con su copo de nieve en plata.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Pandora Elsa Y Nokk Frozen","d":"Elsa sobre Nokk el caballo de agua.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Snoopy","d":"Snoopy el beagle más famoso del mundo.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Corazón Rosa Metálico","d":"Corazón en esmalte rosa metálico brillante.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm La Llave de Tu Corazón","d":"Corazón rosa 'Yours' con llave.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Tulipán Rosado","d":"Tulipán rosa con esmalte. Floral y único.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Úrsula de Villanos de Disney","d":"Úrsula chibi como villana.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Llave de Corazón Opalescente","d":"Llave con corazón opalescente en la punta.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Doble Corazón Rojo Cristal Murano","d":"Corazón rojo Murano 'Are you Soulmate'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Doble Corazón Rojo y Ojo de Cerradura","d":"Corazón rojo con ojo de cerradura.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Doble Flecha y Corazón Grabable","d":"Flecha dorada 'You Are the One'.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Tortuga 2026 Edición Especial","d":"Tortuga conmemorativa 2026 'Trust the Journey'.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Reina Malvada Villanos Disney Blanca Nieves","d":"Reina Malvada con corona dorada.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Flor de Enredados que Brilla (oscuridad)","d":"La flor mágica de Enredados luminiscente.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Colgante Hongo","d":"Hongo rosa con detalles blancos.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Divisible Pajaritos del Amor","d":"Pajaritos divisibles con corazón.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Stitch de Disney en Cristal Murano Rosa","d":"Stitch con rosa en Murano rosa.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Stitch y Scrump de Disney","d":"Stitch con Scrump su muñeca.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Daysi de La Dama y el Vagabundo Disney","d":"Daysi cocker spaniel en dorado.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Birrete Graduación 2026","d":"Birrete azul brillante 'You Made It'.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Colgante Niña Feliz","d":"Niña feliz con corazón dorado.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Harry Potter Ron Weasley","d":"Ron Weasley chibi de Gryffindor.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Fantasma Boo que Brilla en la Oscuridad","d":"Fantasmita luminiscente. Para Halloween.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Minnie Bruja Brilla en la Oscuridad","d":"Minnie bruja luminiscente. Halloween Disney.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Ataúd que se Abre y Brilla","d":"Ataúd luminiscente que se abre. Halloween.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"BOO que Brilla en la Oscuridad","d":"Letras BOO luminiscentes. Halloween.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Calavera De Miguel Y Dante De Coco","d":"Calavera de Coco luminiscente.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Calabaza Espeluznante que Brilla","d":"Calabaza de Halloween luminiscente.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"El Extraño Mundo de Jack","d":"Jack y Sally juntos del clásico Halloween.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Jack Skelllington de Disney","d":"Jack Skelllington de Santa Claus.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Zero De El Extraño Mundo De Jack","d":"Zero el perrito fantasma de Jack.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Mickey Navideño","d":"Mickey Mouse con disfraz navideño.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Minnie Navideña","d":"Minnie Mouse con disfraz de Navidad.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corona Navideña 2025","d":"Corona navideña con rojos y verdes.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cascabel Navideño 2025","d":"Cascabel navideño con lazo rojo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Duende Navideño 2025","d":"Duende navideño colorido y divertido.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Oso Polar Warm Hugs","d":"Oso polar 'Warm Hugs'. Invierno.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Fuegos Artificiales 'The Future is Bright'","d":"Fuegos artificiales. Para celebrar el año nuevo.","c":"CHARMS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Cristal Murano Dulce Navideño","d":"Bola navideña de cristal Murano. Festivo.","c":"CHARMS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Murano Azul Glass","d":"Bola Murano azul galaxy con destellos.","c":"MURANOS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Murano Rosa Fluorescente","d":"Bola Murano rosa fluorescente con destellos.","c":"MURANOS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Primrose Meadow Charm","d":"Bola con flores primavera en esmalte.","c":"MURANOS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Corazones Y Cristal Facetado Cereza","d":"Bola con corazones en esmalte cereza.","c":"MURANOS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Corazones Y Cristal Facetado Rosa","d":"Bola con corazones en esmalte rosa.","c":"MURANOS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cristal de Murano Rosa Envuelto","d":"Bola Murano rosa en espirales de plata.","c":"MURANOS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Cristal Murano Galaxia & Estrella","d":"Bola Murano azul galaxia con estrellas.","c":"MURANOS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Cristal Murano Rosa Mate (Oro Rosa)","d":"Bola Murano rosa mate con aro oro rosa.","c":"MURANOS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Cristal Múralo Rosas Entrelazadas","d":"Bola Murano rosas entrelazadas en blanco.","c":"MURANOS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Iridescent Murano Glass","d":"Bola Murano iridiscente con filigrana rose.","c":"MURANOS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Murano Rosa con Ramas","d":"Bola Murano rosa con ramas caladas.","c":"MURANOS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Charm Murano Rosa Opalescente","d":"Bola Murano en rosa opalescente mágico.","c":"MURANOS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Cadena Seguridad Arco Corazón Zirconias","d":"Cadena seguridad con arco de zirconias.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Cadena Seguridad Gold Pandora con Plata","d":"Cadena bicolor gold y plata. Clásica.","c":"CADENAS","a":"DISPONIBLE","p":699,"t":"","th":""},{"n":"Cadena Seguridad Recubrimiento Gold","d":"Cadena de seguridad en oro.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Cadena Seguridad Corazones Enlazados","d":"Cadena con corazones entrelazados.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Cadena Seguridad Corazón De Familia","d":"Cadena con corazón familiar.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Cadena Seguridad Corona Pandora","d":"Cadena con corona rose gold.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Cadena Seguridad Margarita","d":"Cadena de seguridad con margaritas.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Cadena Seguridad Banda Corazones","d":"Cadena con banda de corazones.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Cadena Seguridad Insignia PANDORA","d":"Cadena con insignia oficial Pandora.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Cadena Seguridad Inspiración Pavé","d":"Cadena pavé con zirconias brillantes.","c":"CADENAS","a":"DISPONIBLE","p":699,"t":"","th":""},{"n":"Cadena Seguridad Mickey Escalando Disney","d":"Cadena Mickey escalando. Para fans Disney.","c":"CADENAS","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Clip Banda de Corazones","d":"Clip con banda de corazones calados.","c":"CLIPS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Clip Coronas O de Pandora","d":"Clip con coronas y logo Pandora.","c":"CLIPS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Clip Con Brillantes Y Logotipo","d":"Clip logo Pandora con brillantes.","c":"CLIPS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Clip Sol, Estrella & Luna Celestial","d":"Clip celestial con sol, estrella y luna.","c":"CLIPS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Sujetador Transparente Hilera Centelleante","d":"Clip transparente con hilera de zirconias.","c":"CLIPS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Clip en Pavé Rosa","d":"Clip cubierto de zirconias rosas.","c":"CLIPS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Sujetador Corazón Cubierto En Oro Rosa","d":"Clip con corazón en oro rosa.","c":"CLIPS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Charm Fijo Margarita Rosa (Oro Rosa)","d":"Clip margarita rosa con oro rosa.","c":"CLIPS","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Clip Corazones Infinitos Brillantes","d":"Clip corazones infinitos con zirconias.","c":"CLIPS","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Pulsera Cadena Tachuelas Cierre Corazón","d":"Elegante pulsera de cadena con tachuelitas y cierre de corazón. Sofisticada y llamativa.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Brazalete Cadena Serpiente Cierre Corazón Pandora Moments","d":"Clásica cadena serpiente Moments con cierre de corazón. La base perfecta para tus charms.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Brazalete Pandora Moments Broche Corazón Oro Rosa","d":"Cadena serpiente Moments con broche brillante de corazón en recubrimiento oro rosa.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Brazalete Cadena Serpiente Broche Estrella Asimétrica","d":"Cadena serpiente con llamativo broche de estrella asimétrica con zirconias.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Pulsera Pandora Cuero Acabado Liso","d":"Pulsera de cuero marrón con cierre Pandora. Casual y elegante a la vez.","c":"BRAZALETES","a":"DISPONIBLE","p":899,"t":"","th":""},{"n":"Brazalete Doble Cuero Negro Pandora Moments","d":"Doble vuelta de cuero negro con cierre Pandora. Estilo urbano y moderno.","c":"BRAZALETES","a":"DISPONIBLE","p":899,"t":"","th":""},{"n":"Pulsera Pandora Insignia Gold con Plata","d":"Cadena serpiente con broche bicolor gold y plata. Elegancia atemporal.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Pulsera Pandora Cuero Ajustable","d":"Pulsera de cuero negro ajustable con broche deslizante. Cómoda y versátil.","c":"BRAZALETES","a":"DISPONIBLE","p":899,"t":"","th":""},{"n":"Brazalete Tennis Corazón Insignia","d":"Brazalete estilo tennis con corazón insignia en plata. Delicado y brillante.","c":"BRAZALETES","a":"AGOTADO","p":899,"t":"","th":""},{"n":"Pulsera Tenis Brillante","d":"Pulsera tenis cubierta de zirconias brillantes. Para brillar en toda ocasión.","c":"BRAZALETES","a":"DISPONIBLE","p":899,"t":"","th":""},{"n":"Brazalete Tennis Corazón Insignia Rosa","d":"Brazalete tenis en rose gold con corazón central en rosa. Femenino y especial.","c":"BRAZALETES","a":"AGOTADO","p":899,"t":"","th":""},{"n":"Brazalete Pandora Moments Broche Brillante Corazón","d":"Cadena serpiente Moments con broche brillante de corazón pavé.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Brazalete Pandora Moments Cierre Corona Zirconias","d":"Cadena serpiente con cierre de corona y zirconias brillantes. Realeza pura.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Pulsera Pandora Cierre en T Estrella Asimétrica","d":"Cadena serpiente con llamativo cierre estrella asimétrica. Moderna y única.","c":"BRAZALETES","a":"DISPONIBLE","p":1400,"t":"","th":""},{"n":"Brazalete Pandora Moments Broche Mickey Mouse Disney","d":"Cadena serpiente con broche de Mickey Mouse. Para fans de Disney.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Brazalete Cadena Eslabones Pequeños","d":"Cadena de eslabones pequeños en plata. Minimalista y versátil.","c":"BRAZALETES","a":"DISPONIBLE","p":1400,"t":"","th":""},{"n":"Brazalete Cadena Cubana Corazón","d":"Cadena cubana con detalle de corazón. Moderna y sofisticada.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Brazalete Cubana con Zirconias","d":"Cadena cubana cubierta de zirconias brillantes. Lujosa y llamativa.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Cadena Serpiente Trenzada Broche Redondo Pandora","d":"Cadena serpiente trenzada doble con broche redondo Pandora. Textura única.","c":"BRAZALETES","a":"AGOTADO","p":1400,"t":"","th":""},{"n":"Brazalete Tenis Corazón Brillante Rojo","d":"Brazalete tenis con corazón brillante en rojo. Pasional y elegante.","c":"BRAZALETES","a":"AGOTADO","p":899,"t":"","th":""},{"n":"Brazalete Cadena con Moño","d":"Delicada cadena con moño rosa colgante. Femenino y muy dulce.","c":"BRAZALETES","a":"DISPONIBLE","p":899,"t":"","th":""},{"n":"Brazalete Estrellas Celestiales","d":"Brazalete con estrellas y destellos. Celestial y mágico.","c":"BRAZALETES","a":"AGOTADO","p":899,"t":"","th":""},{"n":"Brazalete Corazones con Halo","d":"Brazalete de corazones con halo de zirconias. Romántico y brillante.","c":"BRAZALETES","a":"AGOTADO","p":999,"t":"","th":""},{"n":"Brazalete Rígido Broche Corazón con Logo","d":"Brazalete rígido tipo bangle con broche de corazón y logo Pandora.","c":"BRAZALETES","a":"AGOTADO","p":899,"t":"","th":""},{"n":"Brazalete Spiderman Rígido","d":"Brazalete rígido con broche de Spiderman Marvel. Para fans del hombre araña.","c":"BRAZALETES","a":"DISPONIBLE","p":899,"t":"","th":""},{"n":"Brazalete Pandora Rígido Abierto con Zirconias","d":"Brazalete rígido abierto con esferas de zirconias en los extremos.","c":"BRAZALETES","a":"AGOTADO","p":899,"t":"","th":""},{"n":"Brazalete Rígido Abierto Pandora","d":"Brazalete rígido abierto clásico Pandora con cierres esféricos.","c":"BRAZALETES","a":"AGOTADO","p":899,"t":"","th":""},{"n":"Collar y Aretes Brillante Corazón Oro Rosa","d":"Collar y aretes en recubrimiento oro rosa con corazón brillante y zirconias. Conjunto romántico.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Aretes Pandora Signature Pavé Entrelazado","d":"Collar y aretes con círculos entrelazados pavé Pandora Signature. Elegante y sofisticado.","c":"COLLARES","a":"AGOTADO","p":799,"t":"","th":""},{"n":"Collar y Aretes Brillante Corazón Plata","d":"Collar y aretes con corazón brillante en plata. Clásico y romántico. Conjunto completo.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Aretes Halo Cuadrado Brillante","d":"Collar disponible, aretes agotados. Halo cuadrado brillante con zirconia central.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Pendientes Angel y Stitch Disney","d":"Collar con colgante y aretes de botón de Angel y Stitch. Para fans de Disney.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Colgante y Aretes Herbario Brillante","d":"Collar y aretes con diseño herbario de flores brillantes. Delicado y sofisticado.","c":"COLLARES","a":"AGOTADO","p":799,"t":"","th":""},{"n":"Collar y Aretes Mariposa Azul Nueva Temporada","d":"Collar y aretes de mariposa azul con zirconias marquesa. Nueva temporada 2025.","c":"COLLARES","a":"AGOTADO","p":799,"t":"","th":""},{"n":"Collar Candado Pandora Signature","d":"Collar con candado Pandora en plata y zirconias rosas. Único y especial.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar Clásico Para Aplicar Charm","d":"Collar clásico de plata con eslabones para añadir tu charm favorito.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Aretes Halo Corazón Brillante Rojo","d":"Collar agotado, aretes disponibles. Corazón rojo brillante con halo de zirconias.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Aretes Redondo Zirconia Halo Brillante","d":"Collar y aretes rose gold con zirconia redonda y halo brillante. Sofisticado.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Aretes Corazón Amado","d":"Collar y aretes con corazón calado de zirconias. Romántico y delicado.","c":"COLLARES","a":"AGOTADO","p":699,"t":"","th":""},{"n":"Collar Pandora Halo Girando","d":"Collar con medallón circular Pandora giratorio y aretes a juego.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Aretes Logo Pandora Zirconias","d":"Conjunto completo logo Pandora con zirconias en caja. Perfecto para regalo.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Aretes Pandora De Corazón Rosa","d":"Collar y aretes en plata con corazón rosa y zirconias. Delicado y especial.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar con Colgante Circular de Pavé","d":"Collar en dorado con colgante circular de pavé y aretes aro. Elegante.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar y Aretes Herbario Gold Rose","d":"Collar agotado, aretes disponibles. Diseño herbario en rose gold.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar en Plata Colgante Doble Corazón Brillante","d":"Collar y aretes con doble corazón colgante brillante. Muy especial.","c":"COLLARES","a":"AGOTADO","p":799,"t":"","th":""},{"n":"Signature Collar Círculos Entrelazados 2 Tonos","d":"Collar Pandora Signature con círculos entrelazados en plata y rose gold.","c":"COLLARES","a":"AGOTADO","p":799,"t":"","th":""},{"n":"Collar y Aretes Moño Pandora Rosa","d":"Collar y aretes con moño en zirconias rosas. Femenino y muy dulce.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar Pandora Rose Gold","d":"Collar y aretes Pandora en rose gold con corazón rosa. Romántico y especial.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar Doble Corazón Zirconias y Aretes","d":"Set collar y aretes con doble corazón de zirconias. Foto de @adora.xalapaa.","c":"COLLARES","a":"AGOTADO","p":799,"t":"","th":""},{"n":"Arracadas Pandora Azul Agua","d":"Aretes de aro con zirconias azul agua. Frescos y elegantes.","c":"ARETES","a":"AGOTADO","p":499,"t":"","th":""},{"n":"Aretes de Botón Moño Reluciente Plata Esterlina","d":"Aretes de botón en forma de moño con zirconias. Delicados y femeninos.","c":"ARETES","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Collar para Mujer con Halo","d":"Collar y aretes con colgante circular halo de zirconias. Elegante.","c":"COLLARES","a":"AGOTADO","p":799,"t":"","th":""},{"n":"Collar Corazón Infinito","d":"Collar y aretes con corazón infinito en plata. Símbolo de amor eterno.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar Corazón Rosa Colección 2026","d":"Collar con gran corazón rosa colección 2026. Pieza de edición especial.","c":"COLLARES","a":"AGOTADO","p":799,"t":"","th":""},{"n":"Collar para Mujer con Llave","d":"Collar con colgante de llave corazón y aretes rojos. Romántico y especial.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Collar Collier Infinito Resplandeciente","d":"Collar con símbolo infinito de zirconias. Elegante y significativo.","c":"COLLARES","a":"DISPONIBLE","p":799,"t":"","th":""},{"n":"Aretes Botón Candado Corazón Reluciente","d":"Aretes de botón con candados de corazón y zirconias. Únicos y especiales.","c":"ARETES","a":"DISPONIBLE","p":499,"t":"","th":""},{"n":"Anillo Bicolor Gold y Plata","d":"Anillo bicolor con piedra marquesa y banda dorada. Tallas disponibles: 6 y 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,8","th":""},{"n":"Anillo Rosas Grabadas","d":"Anillo con rosas grabadas en plata. Romántico y delicado. Talla 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6","th":""},{"n":"Anillo Deseo Corazón Pavé Rose Gold","d":"Anillo de deseo en forma de V con corazón pavé en rose gold. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Corazón Rosa Pandora","d":"Anillo con corazón central rosa y banda pavé. Femenino y especial. Talla 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"9","th":""},{"n":"Anillo Corazón Elevado Plata","d":"Anillo con corazón elevado y zirconias. Clásico y elegante. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Deseo Corazón Rose Gold","d":"Anillo de deseo en V con corazón en rose gold. Tallas 7 y 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7,9","th":""},{"n":"Anillo Pandora Brillante Corazón Rosa Agotado","d":"Anillo rose gold con corazón rosa central y pavé. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Corazón Suspendido Zirconias","d":"Anillo con corazón suspendido y halo de zirconias en plata. Talla 5.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5","th":""},{"n":"Anillo Pera Rose Gold","d":"Anillo rose gold con piedra pera y halo de zirconias. Talla 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"8","th":""},{"n":"Anillo Logo Pandora Grabado Agotado","d":"Anillo con logo Pandora grabado en banda. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Corazón Moño Pandora","d":"Anillo con corazón y moño en plata Pandora. Tallas 9 y 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,9","th":""},{"n":"Anillo Moño Plata Agotado","d":"Anillo con delicado moño en plata. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Zirconia Cuadrada Pandora","d":"Anillo con zirconia cuadrada y banda de zirconias. Tallas 6 y 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,9","th":""},{"n":"Anillo Solitario Corazón Pandora","d":"Anillo solitario con corazón de zirconia. Elegante y clásico. Talla 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"8","th":""},{"n":"Anillo Deseo Blanco Plata","d":"Anillo deseo minimalista en V de plata con detalles. Tallas 5 y 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,7","th":""},{"n":"Anillo Corazón Elevado Brillante","d":"Anillo con doble corazón elevado brillante. Talla 5.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5","th":""},{"n":"Anillo Logo Pandora Signature","d":"Anillo con logo Pandora Signature circular. Talla 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"9","th":""},{"n":"Anillo Corona Flores Agotado","d":"Anillo con corona de pequeñas flores y zirconias. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Zirconia Rectangular Halo","d":"Anillo con zirconia rectangular y halo de brillantes. Talla 5.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5","th":""},{"n":"Anillo Corazón Rojo Brillante","d":"Anillo con corazón rojo brillante y pavé. Pasional. Tallas 6, 7 y 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,7,9","th":""},{"n":"Anillo Deseo Tiara Plata","d":"Anillo de deseo con tiara de zirconias marquesa. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Mariposa Flor Plata","d":"Anillo con mariposa y flores delicadas. Tallas 5, 7 y 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,7,9","th":""},{"n":"Anillo Sol y Luna Bicolor","d":"Anillo bicolor con sol dorado y luna plateada. Celestial. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Corazón Rosa Pera","d":"Anillo con corazón rosa corte pera y zirconias. Tallas 6 y 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,8","th":""},{"n":"Anillo Princesa Ariel","d":"Anillo inspirado en Ariel con perla y detalles marinos. Tallas 7 y 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7,8","th":""},{"n":"Anillo Princesa Tiana","d":"Anillo inspirado en Tiana con detalles verdes. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Princesa Rapunzel","d":"Anillo corona de Rapunzel con flores rosas en dorado. Tallas 5,7,8,9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,7,8,9","th":""},{"n":"Anillo Princesa Blancanieves","d":"Anillo de Blancanieves con detalles rojos. Tallas 5 y 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,7","th":""},{"n":"Anillo Frozen x Disney Agotado","d":"Anillo inspirado en Frozen con piedras azules y detalles de hielo.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Barroco Plata","d":"Anillo con diseño barroco calado en plata. Tallas 6 y 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,7","th":""},{"n":"Anillo Grabable Corazón Liso","d":"Anillo grabable con corazón liso en plata. Personalizable. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Estrellas Zirconias Agotado","d":"Anillo con constelación de estrellas y zirconias. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Circular Grabable Agotado","d":"Anillo circular con espacio grabable. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Corona Calada","d":"Anillo con corona calada de zirconias brillantes. Talla 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"9","th":""},{"n":"Anillo Reina Malvada Corazón Rojo","d":"Anillo inspirado en la Reina Malvada con corazón rojo. Talla 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6","th":""},{"n":"Anillo Estrella Fugaz","d":"Anillo con estrella fugaz y zirconia. Pide un deseo. Tallas 5 y 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,9","th":""},{"n":"Anillo Cenicienta Carruaje Agotado","d":"Anillo con carruaje de Cenicienta y piedra azul. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Corazón Calado","d":"Anillo con corazón calado en plata. Romántico. Talla 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"9","th":""},{"n":"Anillo Be Love Corazones Agotado","d":"Anillo con corazones y mensaje 'Be Love'. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Pandora Signature Doble Banda","d":"Anillo Pandora Signature con doble banda y texto grabado. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Solitario Corazón Suspendido Agotado","d":"Anillo con gran corazón suspendido y halo de pavé. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Corazón Rosa Morado","d":"Anillo con corazón rosa/morado y detalles de plata. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Infinito Dorado","d":"Anillo con símbolo infinito en oro. Atemporal y especial. Talla 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"8","th":""},{"n":"Anillo Corazón Elevado Dorado Agotado","d":"Anillo corazón elevado en dorado con pavé. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Halo Redondo Dorado","d":"Anillo con zirconia redonda y halo en dorado. Talla 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"9","th":""},{"n":"Anillo Perlas Alternadas","d":"Anillo con perlas y zirconias alternadas en rose gold. Talla 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6","th":""},{"n":"Anillo Corazón Azul Pandora Agotado","d":"Anillo con corazón azul elevado y pavé. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Solitario Halo Plata","d":"Anillo solitario con gran zirconia y halo de pavé. Tallas 6 y 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,8","th":""},{"n":"Anillo Doble Corazón Rojo","d":"Anillo con doble corazón rojo y zirconias brillantes. Talla 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"8","th":""},{"n":"Anillo Marquesa Elevada","d":"Anillo con zirconia marquesa elevada y detalles. Tallas 5 y 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,6","th":""},{"n":"Anillo Corona Flores","d":"Anillo con corona de flores delicadas caladas. Talla 5.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5","th":""},{"n":"Anillo Corazón Elevado Halo","d":"Anillo con corazón elevado y gran halo de pavé. Talla 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6","th":""},{"n":"Anillo Triple Banda Pandora","d":"Anillo con triple banda Pandora y zirconias en pavé.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"","th":""},{"n":"Anillo Búho Zirconias Agotado","d":"Anillo con búho de zirconias brillantes. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Corazón Rosa Esmaltado","d":"Anillo con corazón rosa esmaltado y detalles brillantes. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Doble Banda Pandora Signature Agotado","d":"Anillo doble banda Pandora Signature con pavé. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Deseo Corazón V","d":"Anillo deseo con corazón V y zirconias brillantes. Tallas 6 y 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,9","th":""},{"n":"Anillo Corazón Pequeño Solitario","d":"Anillo con pequeño corazón solitario rojo. Romántico. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Pandora Mickey Corazones","d":"Anillo Pandora con pequeños Mickey y corazones. Tallas 5 y 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,7","th":""},{"n":"Anillo Solitario Marquesa","d":"Anillo con piedra marquesa solitaria y detalles. Talla 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"7","th":""},{"n":"Anillo Zirconia Azul Cuadrada","d":"Anillo con gran zirconia azul cuadrada halo. Talla 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6","th":""},{"n":"Anillo Flor Pandora","d":"Anillo con pequeña flor Pandora en plata. Tallas 6 y 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,8","th":""},{"n":"Anillo Solitario Corazón Simple","d":"Anillo solitario con corazón simple en plata.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"","th":""},{"n":"Anillo Corazones Rosas Pandora Agotado","d":"Anillo con banda de corazones rosas. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo Moño Pavé Plata","d":"Anillo con moño de pavé en plata. Tallas 5 y 9.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,9","th":""},{"n":"Anillo Moño Plata Simple","d":"Anillo con moño simple en plata. Tallas 5 y 7.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"5,7","th":""},{"n":"Anillo Princesa Cenicienta","d":"Anillo de Cenicienta con carruaje dorado y piedra azul. Tallas 6 y 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,8","th":""},{"n":"Anillo Triple Zirconias Plata","d":"Anillo con tres zirconias en plata. Clásico y elegante. Tallas 6 y 8.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6,8","th":""},{"n":"Anillo Princesa Aurora","d":"Anillo de Aurora La Bella Durmiente en dorado con flores. Talla 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6","th":""},{"n":"Anillo Herbario Abeja Bridgerton Netflix","d":"Anillo herbario con abeja inspirado en Bridgerton. Talla 6.","c":"ANILLOS","a":"DISPONIBLE","p":599,"t":"6","th":""},{"n":"Anillo Abeja Flor Perla Bridgerton Agotado","d":"Anillo con abeja, flor y perla Bridgerton. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""},{"n":"Anillo x Bridgerton Mariposa Agotado","d":"Anillo Bridgerton con mariposa y piedras azules. Agotado.","c":"ANILLOS","a":"AGOTADO","p":599,"t":"","th":""}];
+const PDFIMGS={};
+
+let cat="ALL",av="ALL",q="",sT=null,cP=null;
+const PAGE=40;
+let fi=[],cards=[],sheetData={};
+
+/* ── CURSOR ── */
+const C=document.getElementById("cur"),CR=document.getElementById("curR");
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+"px";C.style.top=my+"px";},{passive:true});
+(function aR(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;CR.style.left=rx+"px";CR.style.top=ry+"px";requestAnimationFrame(aR);})();
+function hov(b){C.style.width=b?"13px":"8px";C.style.height=b?"13px":"8px";C.style.background=b?"var(--mag)":"var(--deep)";CR.style.width=b?"52px":"36px";CR.style.height=b?"52px":"36px";}
+
+/* ── HEADER ── */
+window.addEventListener("scroll",()=>document.getElementById("hdr").classList.toggle("up",scrollY>30),{passive:true});
+
+/* ── PARTICLES ── */
+(function(){
+  const cv=document.getElementById("ptc"),cx=cv.getContext("2d");
+  function sz(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}sz();
+  window.addEventListener("resize",sz,{passive:true});
+  const pts=Array.from({length:65},()=>({x:Math.random()*1800,y:Math.random()*850,vx:(Math.random()-.5)*.11,vy:(Math.random()-.5)*.08,r:Math.random()*.7+.1,a:Math.random()*.32+.06,t:Math.random()>.55?"g":Math.random()>.5?"r":"p"}));
+  (function draw(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=cv.width;if(p.x>cv.width)p.x=0;if(p.y<0)p.y=cv.height;if(p.y>cv.height)p.y=0;cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);cx.fillStyle=p.t==="g"?`rgba(201,160,80,${p.a})`:p.t==="r"?`rgba(210,130,155,${p.a})`:`rgba(253,235,240,${p.a*.4})`;cx.fill();});
+    requestAnimationFrame(draw);
+  })();
+})();
+
+/* ── GSAP + VIDEO (carga diferida) ── */
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    const v=document.getElementById("bgv"),s=v.querySelector("source");
+    if(s&&s.dataset.src){s.src=s.dataset.src;v.load();v.play().catch(()=>{});}
+  },500);
+  if(typeof gsap!=="undefined"){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(".wi",{y:"80%",duration:1.1,stagger:.055,ease:"power4.out",delay:.1});
+    gsap.from(".heye",{opacity:0,y:10,duration:.8,delay:.05});
+    gsap.from(".hdiv",{opacity:0,scaleX:.2,duration:.9,delay:.8});
+    gsap.from(".hcats",{opacity:0,y:10,duration:.7,delay:1});
+    gsap.from(".hscr",{opacity:0,duration:.6,delay:1.2});
+    gsap.from(".lz",{opacity:0,y:-8,duration:.8,delay:.1});
+    gsap.from(".hright",{opacity:0,y:-8,duration:.7,delay:.3});
+    gsap.to("#hvw",{yPercent:20,ease:"none",scrollTrigger:{trigger:"#hero",start:"top top",end:"bottom top",scrub:1.2}});
+    gsap.to(".hcont",{yPercent:11,ease:"none",scrollTrigger:{trigger:"#hero",start:"top top",end:"bottom top",scrub:1.8}});
+    gsap.to(".hscr",{opacity:0,ease:"none",scrollTrigger:{trigger:"#hero",start:"55% top",end:"75% top",scrub:1}});
+  }
+  /* Cargar Sheet después de que la página ya está pintada */
+  /* Datos del Sheet pre-cargados — se actualizan cuando regeneras el HTML */
+const SHEET_OVERRIDES={"39":"https://res.cloudinary.com/dypdi9ejd/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05_26_at_12.52.57_a._m._wuczgz"};
+(function applySheet(){
+  Object.keys(SHEET_OVERRIDES).forEach(function(i){
+    var idx=parseInt(i);
+    var url=SHEET_OVERRIDES[i];
+    if(!url||idx>=PM.length)return;
+    sheetData[idx]={img:url};
+  });
+  var bar=document.getElementById("sheetBar");
+  var msg=document.getElementById("sheetMsg");
+  if(bar){bar.className="sheet-bar";if(msg)msg.textContent="✓ Datos del Sheet cargados";}
+  setTimeout(function(){if(bar)bar.style.display="none";},3000);
+})();
+});
+
+/* ── GOOGLE SHEET SYNC ── */
+function loadSheet(){
+  const bar=document.getElementById("sheetBar"),msg=document.getElementById("sheetMsg");
+  const APPS_URL="https://script.google.com/macros/s/AKfycbyLEZoZmOjvhYQufSKSu501yiZ1TwSYpxCq2vfzI-lvB-3EUlUm_x8_uKEn97OY-0Jj/exec?callback=sheetCallback";
+  window.sheetCallback=function(rows){
+    try{
+      if(!rows||!rows.length)throw new Error("Sin datos");
+      parseSheetJSON(rows);
+      bar.className="sheet-bar";
+      msg.textContent="✓ Sincronizado con Google Sheet";
+      setTimeout(()=>bar.style.display="none",4000);
+    }catch(e){
+      bar.className="sheet-bar err";
+      msg.textContent="📋 Sin conexión al Sheet · Fotos del catálogo como respaldo";
+    }
+  };
+  var s=document.createElement("script");
+  s.src=APPS_URL;
+  s.onerror=function(){
+    bar.className="sheet-bar err";
+    msg.textContent="📋 Sin conexión al Sheet · Fotos del catálogo como respaldo";
+  };
+  document.head.appendChild(s);
+}
+
+function parseSheet(csv){
+  const lines=csv.split("\n").filter(l=>l.trim());
+  if(lines.length<2)return;
+  const sep=lines[0].includes("\t")?"\t":",";
+  const headers=lines[0].split(sep).map(h=>h.trim().toLowerCase().replace(/"/g,""));
+  const iName=headers.findIndex(h=>h.includes("nombre")||h.includes("name"));
+  const iImg=headers.findIndex(h=>h.includes("imagen")||h.includes("img")||h.includes("foto")||h.includes("url"));
+  const iAvail=headers.findIndex(h=>h.includes("disp")||h.includes("avail")||h.includes("stock"));
+  const iPrice=headers.findIndex(h=>h.includes("precio")||h.includes("price"));
+  const iTalla=headers.findIndex(h=>h.includes("talla"));
+  if(iName<0)return;
+
+  /* convertir cualquier link de imagen al formato correcto */
+  function fixImgur(url){
+    if(!url)return url;
+    url=url.trim();
+    /* Cloudinary — funciona directo, no modificar */
+    if(url.includes("cloudinary.com"))return url;
+    /* ya es imagen directa de imgur */
+    if(url.match(/i\.imgur\.com\/.+\.(jpg|jpeg|png|gif|webp)/i))return url;
+    /* album imgur.com/a/XXXXX */
+    const mAlbum=url.match(/imgur\.com\/a\/([a-zA-Z0-9]+)/);
+    if(mAlbum)return"https://i.imgur.com/"+mAlbum[1]+".jpg";
+    /* imgur.com/XXXXX sin extensión */
+    const mDirect=url.match(/imgur\.com\/([a-zA-Z0-9]+)$/);
+    if(mDirect)return"https://i.imgur.com/"+mDirect[1]+".jpg";
+    /* cualquier otra URL — devolver tal cual */
+    return url;
+  }
+
+  /* match exacto por posición (fila Sheet = índice PM) */
+  for(let i=1;i<lines.length;i++){
+    const cols=lines[i].split(sep).map(c=>c.trim().replace(/^"|"$/g,""));
+    const pidx=i-1; /* fila 2 del sheet = producto 0 */
+    if(pidx>=PM.length)break;
+    
+    /* imagen */
+    if(iImg>=0&&cols[iImg]&&cols[iImg].trim().startsWith("http")){
+      const imgUrl=fixImgur(cols[iImg]);
+      sheetData[pidx]={img:imgUrl};
+      if(cards[pidx]){
+        const ci=cards[pidx].querySelector(".cimg");
+        if(ci&&ci.dataset.src!==imgUrl){
+          ci.dataset.src=imgUrl;
+          if(!cards[pidx].classList.contains("H"))imgObs.observe(ci);
+        }
+      }
+    }
+    /* disponibilidad */
+    if(iAvail>=0&&cols[iAvail]){
+      const a=cols[iAvail].toUpperCase().trim();
+      if(a.includes("DISP"))PM[pidx].a="DISPONIBLE";
+      else if(a.includes("AGOT"))PM[pidx].a="AGOTADO";
+      if(cards[pidx]){
+        const iD=PM[pidx].a==="DISPONIBLE";
+        cards[pidx].className="card"+(iD?"":" ago");
+        const badge=cards[pidx].querySelector(".cbadge");
+        if(badge){badge.className="cbadge "+(iD?"bd":"ba");badge.textContent=iD?"Disponible":"Agotado";}
+        /* actualizar botón WhatsApp */
+        const bwa=cards[pidx].querySelector(".bwa:not(.dis),.bwa.dis");
+        if(bwa){
+          const u=wa(PM[pidx].n,PM[pidx].a,null);
+          if(iD&&u){bwa.className="bwa";bwa.href=u;bwa.innerHTML=wsvg+"Pedir";}
+          else{bwa.className="bwa dis";bwa.removeAttribute("href");}
+        }
+      }
+    }
+    /* precio */
+    if(iPrice>=0&&cols[iPrice]){
+      const pr=parseInt(cols[iPrice].replace(/[^0-9]/g,""));
+      if(pr>0){
+        PM[pidx].p=pr;
+        if(cards[pidx]){const prEl=cards[pidx].querySelector(".cpr");if(prEl)prEl.childNodes[0].textContent="$"+pr;}
+      }
+    }
+    /* tallas */
+    if(iTalla>=0&&cols[iTalla]&&cols[iTalla].trim()){
+      PM[pidx].t=cols[iTalla].trim();
+      if(cards[pidx]){
+        let tallasEl=cards[pidx].querySelector(".ctalls");
+        const tl=cols[iTalla].trim().split(",").filter(x=>x.trim());
+        if(tl.length){
+          if(!tallasEl){
+            tallasEl=document.createElement("div");
+            tallasEl.className="ctalls";
+            const desc=cards[pidx].querySelector(".cdesc");
+            if(desc)desc.after(tallasEl);
+          }
+          tallasEl.innerHTML=tl.map(t=>`<span class="ct">#${t.trim()}</span>`).join("");
+        }
+      }
+    }
+  }
+  upCount();
+}
+
+function parseSheetJSON(rows){
+  rows.forEach((row,i)=>{
+    if(i>=PM.length)return;
+    /* imagen — el campo en el Sheet se llama imagen_url */
+    const imgUrl=(row["imagen_url"]||"").toString().trim();
+    if(imgUrl&&imgUrl.startsWith("http")){
+      const fixed=fixImgur(imgUrl);
+      sheetData[i]={img:fixed};
+      if(cards[i]){
+        const ci=cards[i].querySelector(".cimg");
+        if(ci){
+          ci.dataset.src=fixed;
+          /* cargar imagen directamente sin esperar lazy loader */
+          ci.src=fixed;
+          ci.onload=function(){ci.classList.add("ok");};
+          ci.onerror=function(){ci.src="";};
+        }
+      }
+    }
+    /* disponibilidad */
+    const av=(row["disponibilidad"]||"").toString().toUpperCase().trim();
+    if(av){
+      if(av.includes("DISP"))PM[i].a="DISPONIBLE";
+      else if(av.includes("AGOT"))PM[i].a="AGOTADO";
+      if(cards[i]){
+        const iD=PM[i].a==="DISPONIBLE";
+        cards[i].className="card"+(iD?"":" ago");
+        const badge=cards[i].querySelector(".cbadge");
+        if(badge){badge.className="cbadge "+(iD?"bd":"ba");badge.textContent=iD?"Disponible":"Agotado";}
+      }
+    }
+    /* precio */
+    const prRaw=(row["precio"]||"").toString().replace(/[^0-9]/g,"");
+    const pr=parseInt(prRaw);
+    if(pr>0){
+      PM[i].p=pr;
+      if(cards[i]){
+        const prEl=cards[i].querySelector(".cpr");
+        if(prEl&&prEl.childNodes[0])prEl.childNodes[0].textContent="$"+pr;
+      }
+    }
+    /* tallas */
+    const tl=(row["tallas"]||"").toString().trim();
+    if(tl&&tl!=="0"){
+      PM[i].t=tl;
+      if(cards[i]){
+        let te=cards[i].querySelector(".ctalls");
+        const tls=tl.split(",").filter(x=>x.trim());
+        if(tls.length){
+          if(!te){
+            te=document.createElement("div");
+            te.className="ctalls";
+            const desc=cards[i].querySelector(".cdesc");
+            if(desc)desc.after(te);
+          }
+          te.innerHTML=tls.map(t=>`<span class="ct">#${t.trim()}</span>`).join("");
+        }
+      }
+    }
+  });
+  upCount();
+}
+
+/* ── LAZY IMG OBSERVER ── */
+const imgObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const img=e.target,src=img.dataset.src;
+    if(!src)return;
+    img.onload=()=>{
+      img.classList.add("ok");
+      const th=img.closest(".ciw")?.querySelector(".cthumb");
+      if(th)th.classList.add("gone");
+    };
+    img.onerror=()=>{
+      /* fallback: foto del PDF */
+      const idx=img.dataset.idx;
+      if(idx&&PDFIMGS[idx]){img.src="data:image/jpeg;base64,"+PDFIMGS[idx];img.classList.add("ok");const th=img.closest(".ciw")?.querySelector(".cthumb");if(th)th.classList.add("gone");}
+    };
+    img.src=src;
+    imgObs.unobserve(img);
+  });
+},{rootMargin:"120px 0px",threshold:0});
+
+/* ── HELPERS ── */
+const ERR="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23f8e6ec'/%3E%3Ctext x='100' y='108' text-anchor='middle' font-size='11' fill='%23b05a72' font-family='sans-serif' letter-spacing='2'%3ESIN%20FOTO%3C/text%3E%3C/svg%3E";
+const wsvg=`<svg class="wico" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>`;
+
+function wa(n,a,t){if(a!=="DISPONIBLE")return null;let m="Hola ADORA CHARMS! Me interesa: "+n;if(t)m+=" — Talla #"+t;return"https://wa.me/"+WA+"?text="+encodeURIComponent(m+" 💕");}
+
+/* ── BUILD CARD ── */
+function mkCard(p,i){
+  const iD=p.a==="DISPONIBLE",tl=p.t?p.t.split(",").filter(x=>x.trim()):[];
+  const u=wa(p.n,p.a,null),el=document.createElement("div");
+  el.className="card"+(iD?"":" ago");el.dataset.i=i;
+  /* imagen: primero el thumb difuminado del PDF, luego la real */
+  const thumbSrc=p.th?"data:image/jpeg;base64,"+p.th:"";
+  /* foto real: preferir Sheet, si no el PDF */
+  const sheetImg=sheetData[i]?.img?fixImgur(sheetData[i].img):null;const realSrc=sheetImg||(PDFIMGS[i]?"data:image/jpeg;base64,"+PDFIMGS[i]:"");
+  el.innerHTML=`
+    <div class="cbadge ${iD?"bd":"ba"}">${iD?"Disponible":"Agotado"}</div>
+    <div class="ciw">
+      ${thumbSrc?`<img class="cthumb" src="${thumbSrc}" alt="" aria-hidden="true">`:"" }
+      <img class="cimg" data-src="${realSrc}" data-idx="${i}" alt="${p.n}">
+    </div>
+    <div class="cbody">
+      <div class="ccat">${p.c}</div>
+      <div class="cname">${p.n}</div>
+      <div class="cdesc">${p.d}</div>
+      ${tl.length?`<div class="ctalls">${tl.map(t=>`<span class="ct">#${t}</span>`).join("")}</div>`:""}
+      <div class="cfoot">
+        <div class="cpr">$${p.p}<span class="cps">MXN</span></div>
+        ${iD?`<a class="bwa" href="${u}" target="_blank" onclick="event.stopPropagation()">${wsvg}Pedir</a>`:`<span class="bwa dis">Agotado</span>`}
+      </div>
+    </div>`;
+  el.addEventListener("click",()=>OM(p,i));
+  el.addEventListener("mouseenter",()=>hov(true));
+  el.addEventListener("mouseleave",()=>hov(false));
+  return el;
+}
+
+/* ── INIT GRID ── */
+(function(){
+  const g=document.getElementById("grid"),frag=document.createDocumentFragment();
+  PM.forEach((p,i)=>{const c=mkCard(p,i);cards.push(c);frag.appendChild(c);});
+  g.appendChild(frag);
+  cards.forEach((c,i)=>{if(i>=PAGE)c.style.display="none";});
+  /* observar imágenes de las primeras PAGE cards */
+  cards.slice(0,PAGE).forEach(c=>{const img=c.querySelector(".cimg[data-src]");if(img&&img.dataset.src)imgObs.observe(img);});
+  upCount();upLM();
+})();
+
+/* ── FILTER ── */
+function render(){
+  fi=[];let n=0,d=0;
+  cards.forEach((c,i)=>{
+    const p=PM[i],ok=(cat==="ALL"||p.c===cat)&&(av==="ALL"||p.a===av)&&(!q||p.n.toLowerCase().includes(q)||p.d.toLowerCase().includes(q));
+    c.classList.toggle("H",!ok);
+    if(!ok){c.style.display="none";return;}
+    fi.push(i);n++;if(p.a==="DISPONIBLE")d++;
+  });
+  fi.forEach((i,pos)=>{
+    cards[i].style.display=pos<PAGE?"":"none";
+    if(pos<PAGE){const img=cards[i].querySelector(".cimg[data-src]");if(img&&img.dataset.src&&!img.classList.contains("ok"))imgObs.observe(img);}
+  });
+  document.getElementById("cnt").textContent=n+" piezas";
+  document.getElementById("stD").textContent=d;
+  document.getElementById("empty").classList.toggle("V",n===0);
+  upLM();
+}
+
+function upCount(){
+  const n=cards.filter(c=>!c.classList.contains("H")).length;
+  const d=PM.filter((p,i)=>!cards[i].classList.contains("H")&&p.a==="DISPONIBLE").length;
+  document.getElementById("cnt").textContent=n+" piezas";
+  document.getElementById("stD").textContent=d;
+}
+
+function upLM(){
+  const pool=(fi.length>0?fi:Array.from({length:PM.length},(_,i)=>i)).filter(i=>!cards[i].classList.contains("H"));
+  const vis=pool.filter(i=>cards[i].style.display!=="none").length;
+  const lm=document.getElementById("lm");
+  lm.classList.toggle("V",vis<pool.length);
+  if(vis<pool.length)lm.textContent=`Ver más — ${pool.length-vis} productos más`;
+}
+
+function LM(){
+  const pool=(fi.length>0?fi:Array.from({length:PM.length},(_,i)=>i)).filter(i=>!cards[i].classList.contains("H")&&cards[i].style.display==="none");
+  pool.slice(0,PAGE).forEach(i=>{
+    cards[i].style.display="";
+    const img=cards[i].querySelector(".cimg[data-src]");
+    if(img&&img.dataset.src&&!img.classList.contains("ok"))imgObs.observe(img);
+  });
+  upLM();
+  if(typeof gsap!=="undefined")gsap.from(pool.slice(0,PAGE).map(i=>cards[i]),{opacity:0,y:12,duration:.4,stagger:.01,ease:"power2.out"});
+}
+
+function FC(c){cat=c;document.querySelectorAll("#catP .np").forEach(p=>p.classList.toggle("on",p.dataset.c===c));render();document.querySelector(".fnav").scrollIntoView({behavior:"smooth"});}
+document.getElementById("catP").addEventListener("click",e=>{const b=e.target.closest(".np");if(!b)return;cat=b.dataset.c;document.querySelectorAll("#catP .np").forEach(x=>x.classList.remove("on"));b.classList.add("on");render();});
+document.getElementById("avP").addEventListener("click",e=>{const b=e.target.closest(".ab");if(!b)return;av=b.dataset.v;document.querySelectorAll("#avP .ab").forEach(x=>x.classList.remove("on"));b.classList.add("on");render();});
+document.getElementById("srch").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();render();},{passive:true});
+
+/* ── MODAL ── */
+function OM(p,i){
+  cP={...p,i};sT=null;
+  const iD=p.a==="DISPONIBLE",tl=p.t?p.t.split(",").filter(x=>x.trim()):[];
+  const thumbSrc=p.th?"data:image/jpeg;base64,"+p.th:"";
+  const sheetImg=sheetData[i]?.img?fixImgur(sheetData[i].img):null;const realSrc=sheetImg||(PDFIMGS[i]?"data:image/jpeg;base64,"+PDFIMGS[i]:"");
+  const mth=document.getElementById("mth"),mi=document.getElementById("mi");
+  mth.src=thumbSrc||"";mth.className="mthumb"+(thumbSrc?"":" gone");
+  mi.src="";mi.onload=()=>{mi.style.opacity=1;mth.classList.add("gone");};
+  mi.src=realSrc||ERR;
+  document.getElementById("mcat").textContent=p.c;
+  document.getElementById("mn").textContent=p.n;
+  document.getElementById("md").textContent=p.d;
+  document.getElementById("mp").textContent="$"+p.p+" MXN";
+  const av=document.getElementById("mav");av.textContent=iD?"✓ Disponible":"Agotado";av.className="mav "+(iD?"d":"a");
+  const ts=document.getElementById("tsec"),tg=document.getElementById("tg");
+  document.getElementById("th").classList.remove("V");
+  if(tl.length){ts.style.display="block";tg.innerHTML=tl.map(t=>`<button class="tbtn" data-t="${t}" onclick="PT('${t}')">#${t}</button>`).join("");}
+  else ts.style.display="none";
+  UW();document.getElementById("mo").classList.add("open");document.body.style.overflow="hidden";
+}
+function PT(t){sT=t;document.querySelectorAll(".tbtn").forEach(b=>b.classList.toggle("on",b.dataset.t===t));document.getElementById("th").classList.remove("V");UW();}
+function UW(){
+  if(!cP)return;const p=cP,iD=p.a==="DISPONIBLE",tl=p.t?p.t.split(",").filter(x=>x.trim()):[];
+  const nT=tl.length>0,el=document.getElementById("mwa"),wt=document.getElementById("mwt");
+  if(!iD){el.className="bwam dis";wt.textContent="Producto Agotado";el.href="#";return;}
+  el.className="bwam";el.href=wa(p.n,p.a,sT)||"#";
+  wt.textContent="Pedir por WhatsApp"+(sT?" — Talla #"+sT:(nT?" (elige tu talla ↑)":""));
+  el.onclick=nT&&!sT?e=>{e.preventDefault();document.getElementById("th").classList.add("V");}:null;
+}
+function CM(){document.getElementById("mo").classList.remove("open");document.body.style.overflow="";cP=null;sT=null;}
+document.getElementById("mc").addEventListener("click",CM);
+document.getElementById("mo").addEventListener("click",e=>{if(e.target===e.currentTarget)CM();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")CM();});
+document.querySelectorAll("button,a").forEach(el=>{el.addEventListener("mouseenter",()=>hov(true));el.addEventListener("mouseleave",()=>hov(false));});
+</script>
+</body>
+</html>
