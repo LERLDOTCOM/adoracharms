@@ -462,60 +462,12 @@ const SHEET_OVERRIDES={"39":"https://res.cloudinary.com/dypdi9ejd/image/upload/f
   if(bar){bar.className="sheet-bar";if(msg)msg.textContent="✓ Datos del Sheet cargados";}
   setTimeout(function(){if(bar)bar.style.display="none";},3000);
 })();
+  setTimeout(loadSheet, 800);
 });
 
 /* ── GOOGLE SHEET SYNC ── */
 /* ── CONVERT IMAGE URLS ── */
 function fixImgur(url){
-  if(!url)return url;
-  url=url.trim();
-  if(url.includes("cloudinary.com"))return url;
-  if(url.match(/i\.imgur\.com\/.+\.(jpg|jpeg|png|gif|webp)/i))return url;
-  const mAlbum=url.match(/imgur\.com\/a\/([a-zA-Z0-9]+)/);
-  if(mAlbum)return"https://i.imgur.com/"+mAlbum[1]+".jpg";
-  const mDirect=url.match(/imgur\.com\/([a-zA-Z0-9]+)$/);
-  if(mDirect)return"https://i.imgur.com/"+mDirect[1]+".jpg";
-  return url;
-}
-
-function loadSheet(){
-  const bar=document.getElementById("sheetBar"),msg=document.getElementById("sheetMsg");
-  const APPS_URL="https://script.google.com/macros/s/AKfycbyLEZoZmOjvhYQufSKSu501yiZ1TwSYpxCq2vfzI-lvB-3EUlUm_x8_uKEn97OY-0Jj/exec?callback=sheetCallback";
-  window.sheetCallback=function(rows){
-    try{
-      if(!rows||!rows.length)throw new Error("Sin datos");
-      parseSheetJSON(rows);
-      bar.className="sheet-bar";
-      msg.textContent="✓ Sincronizado con Google Sheet";
-      setTimeout(()=>bar.style.display="none",4000);
-    }catch(e){
-      bar.className="sheet-bar err";
-      msg.textContent="📋 Sin conexión al Sheet · Fotos del catálogo como respaldo";
-    }
-  };
-  var s=document.createElement("script");
-  s.src=APPS_URL;
-  s.onerror=function(){
-    bar.className="sheet-bar err";
-    msg.textContent="📋 Sin conexión al Sheet · Fotos del catálogo como respaldo";
-  };
-  document.head.appendChild(s);
-}
-
-function parseSheet(csv){
-  const lines=csv.split("\n").filter(l=>l.trim());
-  if(lines.length<2)return;
-  const sep=lines[0].includes("\t")?"\t":",";
-  const headers=lines[0].split(sep).map(h=>h.trim().toLowerCase().replace(/"/g,""));
-  const iName=headers.findIndex(h=>h.includes("nombre")||h.includes("name"));
-  const iImg=headers.findIndex(h=>h.includes("imagen")||h.includes("img")||h.includes("foto")||h.includes("url"));
-  const iAvail=headers.findIndex(h=>h.includes("disp")||h.includes("avail")||h.includes("stock"));
-  const iPrice=headers.findIndex(h=>h.includes("precio")||h.includes("price"));
-  const iTalla=headers.findIndex(h=>h.includes("talla"));
-  if(iName<0)return;
-
-  /* convertir cualquier link de imagen al formato correcto */
-  function fixImgur(url){
     if(!url)return url;
     url=url.trim();
     /* Cloudinary — funciona directo, no modificar */
@@ -598,6 +550,44 @@ function parseSheet(csv){
   upCount();
 }
 
+function loadSheet(){
+  const bar=document.getElementById("sheetBar"),msg=document.getElementById("sheetMsg");
+  const APPS_URL="https://script.google.com/macros/s/AKfycbyLEZoZmOjvhYQufSKSu501yiZ1TwSYpxCq2vfzI-lvB-3EUlUm_x8_uKEn97OY-0Jj/exec?callback=sheetCallback";
+  window.sheetCallback=function(rows){
+    try{
+      if(!rows||!rows.length)throw new Error("Sin datos");
+      parseSheetJSON(rows);
+      bar.className="sheet-bar";
+      msg.textContent="✓ Sincronizado con Google Sheet";
+      setTimeout(()=>bar.style.display="none",4000);
+    }catch(e){
+      bar.className="sheet-bar err";
+      msg.textContent="📋 Sin conexión al Sheet · Fotos del catálogo como respaldo";
+    }
+  };
+  var s=document.createElement("script");
+  s.src=APPS_URL;
+  s.onerror=function(){
+    bar.className="sheet-bar err";
+    msg.textContent="📋 Sin conexión al Sheet · Fotos del catálogo como respaldo";
+  };
+  document.head.appendChild(s);
+}
+
+function parseSheet(csv){
+  const lines=csv.split("\n").filter(l=>l.trim());
+  if(lines.length<2)return;
+  const sep=lines[0].includes("\t")?"\t":",";
+  const headers=lines[0].split(sep).map(h=>h.trim().toLowerCase().replace(/"/g,""));
+  const iName=headers.findIndex(h=>h.includes("nombre")||h.includes("name"));
+  const iImg=headers.findIndex(h=>h.includes("imagen")||h.includes("img")||h.includes("foto")||h.includes("url"));
+  const iAvail=headers.findIndex(h=>h.includes("disp")||h.includes("avail")||h.includes("stock"));
+  const iPrice=headers.findIndex(h=>h.includes("precio")||h.includes("price"));
+  const iTalla=headers.findIndex(h=>h.includes("talla"));
+  if(iName<0)return;
+
+  /* convertir cualquier link de imagen al formato correcto */
+  
 function parseSheetJSON(rows){
   rows.forEach((row,i)=>{
     if(i>=PM.length)return;
