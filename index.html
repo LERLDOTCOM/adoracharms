@@ -476,8 +476,16 @@ function loadSheet(){
 }
 
 function parseSheetJSON(rows){
-  rows.forEach((row,i)=>{
-    if(i>=PM.length)return;
+  /* Construir mapa nombre→índice PM para buscar por nombre, no por posición */
+  const nameMap={};
+  PM.forEach((p,i)=>{ nameMap[p.n.trim().toLowerCase()]=i; });
+
+  rows.forEach((row)=>{
+    /* Buscar el índice real en PM por nombre */
+    const nombre=(row["nombre"]||"").toString().trim();
+    const i=nameMap[nombre.toLowerCase()];
+    if(i===undefined)return; /* producto no encontrado en PM, saltar */
+
     /* imagen */
     const imgUrl=(row["imagen_url"]||"").toString().trim();
     if(imgUrl&&imgUrl.startsWith("http")){
